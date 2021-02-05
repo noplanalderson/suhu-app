@@ -38,5 +38,5 @@ Acknowledgement
 ***************
 
 SIMONSTER Development Team
-- Muhammad Ridwan Na'im
-- Iqbal Tamam
+-  `Muhammad Ridwan Na'im`
+-  `Iqbal Tamam`
