@@ -133,16 +133,17 @@ class SIMONSTER_Core extends CI_Controller
 	{
 		parent::__construct();
 
-		$this->apps = array();
 		$this->_CI =& get_instance();
 
 		$this->_CI->load->driver('cache', array('adapter' => 'memcached'));
 
 		$this->load->model('site_m');
 		
-		$this->menus= load_cache('main_menu', 'site_m', 'getMainMenu', NULL, 300);
+		$this->apps = load_cache('app_setting', 'app_m', 'getAppSetting', NULL, 300);
+		
+		$this->menus= load_cache('main_menu', 'app_m', 'getMainMenu', NULL, 300);
 
-		$this->user = load_cache('user_data', 'site_m', 'getUserProfile', NULL, 300);
+		$this->user = load_cache('user_data', 'app_m', 'getUserProfile', NULL, 300);
 
 		$this->_access = array(
 			'uid' => $this->session->userdata('uid'),
