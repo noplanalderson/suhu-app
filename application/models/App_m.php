@@ -66,6 +66,11 @@ class App_m extends CI_Model {
 		$this->db->where('user_id', $this->session->userdata('uid'));
 		$this->db->update('tb_user', $data);
 	}
+
+	public function getAppSetting()
+	{
+		return $this->db->get('tb_app_setting', 1)->row();
+	}
 }
 
 /* End of file Site_m.php */
