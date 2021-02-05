@@ -26,7 +26,7 @@ class Access_control
 		empty($config) OR $this->initialize($config, FALSE);
 		$this->_CI =& get_instance();
 		
-		$this->_CI->load->model('site_m');
+		$this->_CI->load->model('app_m');
 		$this->_CI->load->model('login_m');
 
 		log_message('info', 'Access Control Class Initialized');
@@ -156,7 +156,7 @@ class Access_control
 	{
 		$this->active_page = empty($this->active_page) ? $this->default_page : $this->active_page;
 
-		$role = load_cache('role_data', 'site_m', 'checkRole', [$this->active_page, $this->gid], 3600);
+		$role = load_cache('role_data', 'app_m', 'checkRole', [$this->active_page, $this->gid], 3600);
 		if(!empty($this->uid) && $role == 0) redirect('kesalahan/403');
 	}
 }
