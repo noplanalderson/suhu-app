@@ -1,51 +1,17 @@
-	<div class="login-header box-shadow" style="background:#031e23">
-		<div class="container-fluid d-flex justify-content-between align-items-center">
-			<div class="brand-logo">
-				<a href="login.html">
-					<?= show_image('onelove-logo-light.png', 'image', 'alt="Logo"')?>
-				</a>
-			</div>
-			<div class="login-menu">
-				<ul>
-					<li><a class="text-white" href="register.html">Daftar</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+
 	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
 		<div class="container">
 			<div class="row align-items-center">
-				<div class="col-md-6 col-lg-7">
-					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<?= show_image('register-page-img.png', 'image', 'alt="Produk1" class="d-block w-100"') ?>
-							</div>
-							<div class="carousel-item">
-								<?= show_image('login-page-img.png', 'image', 'alt="Produk2" class="d-block w-100"') ?>
-							</div>
-							<div class="carousel-item">
-								<?= show_image('remedy-amico.svg', 'image', 'alt="Produk3" class="d-block w-100"') ?>
-							</div>
-						</div>
-						<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-5">
-					<div id="msg_login" class="alert" style="display:none;">
-                        <small class="msg_login"></small>
-                    </div>
+				<div class="col-md-12 col-lg-12">
 					<div class="login-box bg-dark box-shadow border-radius-10">
-						<div class="login-title">
-							<h2 class="text-center text-white">Login Aplikasi One Love</h2>
+						<div class="login-title text-center">
+							<?= show_image($this->app->app_logo_light, 'image', 'alt="Logo"')?>
+							<div class="clearfix"></div>
+							<small class="text-white"><?= $this->app->app_title ?></small>
 						</div>
+						<div id="msg_login" class="alert" style="display:none;">
+	                        <small class="msg_login"></small>
+	                    </div>
 						<?= form_open('login/auth', 'id="formLogin" method="post" accept-charset="utf-8"');?>
 
 							<div class="input-group custom">
@@ -73,16 +39,15 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="input-group mb-0">
-										<a class="btn btn-secondary btn-lg btn-block" href="register.html">Daftar</a>
-									</div>
-								</div>
-								<div class="col-sm-6">
+							<div class="row text-center">
+								<div class="col-sm-12">
 									<div class="input-group mb-0">
 										<input id="submitLogin" name="submit" class="btn btn-primary btn-lg btn-block" type="submit" value="Masuk">
 									</div>
+								</div>
+								<div class="col-sm-12 mt-5">
+									<small class="text-white"><?= $this->app->footer_text ?><br/>
+									Copyright &copy; <?= date('Y')?></small>
 								</div>
 							</div>
 						</form>
