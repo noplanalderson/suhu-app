@@ -107,11 +107,11 @@ class SIMONSTER_Core extends CI_Controller
 	 * 
 	 * @var string
 	*/
-	protected $dir_modul = 'module_'; 
+	protected $dir_module = 'module_'; 
 	
 	/**
 	 * Directory location of javascript php file
-	 * untuk setiap modul
+	 * for specific module
 	 * 
 	 * @var string
 	*/ 
@@ -137,9 +137,9 @@ class SIMONSTER_Core extends CI_Controller
 
 		$this->_CI->load->driver('cache', array('adapter' => 'memcached'));
 
-		$this->load->model('site_m');
+		$this->load->model('app_m');
 		
-		$this->apps = load_cache('app_setting', 'app_m', 'getAppSetting', NULL, 300);
+		$this->app = load_cache('app_setting', 'app_m', 'getAppSetting', NULL, 300);
 		
 		$this->menus= load_cache('main_menu', 'app_m', 'getMainMenu', NULL, 300);
 
@@ -167,8 +167,8 @@ class SIMONSTER_Core extends CI_Controller
 
 	protected function _module()
 	{
-		if(!empty($this->_modul)) {
-			return $this->_CI->load->view('module_' . $this->_modul, $this->_data, TRUE);
+		if(!empty($this->_module)) {
+			return $this->_CI->load->view('module_' . $this->_module, $this->_data, TRUE);
 		}
 	}
 
@@ -184,7 +184,7 @@ class SIMONSTER_Core extends CI_Controller
 		$data = array_merge(
 			$this->_data,
 			array(
-				'content' => $this->_modul(),
+				'content' => $this->_module(),
 				'custom_js' => $this->_script()
 			)
 		);
