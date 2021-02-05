@@ -1,0 +1,105 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+    <script src="demos.js" ></script>
+
+    <title>RGraph demo: A segmented Donut chart</title>
+    <meta name="description" content="A segmented (done by using the dedicated class in the Pie chart library) Donut chart that uses the roundRobin() effect and which could act as a very effective meter." />
+    
+    <!-- <RGRAPH_REMOVE> -->
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- </RGRAPH_REMOVE> -->
+
+</head>
+<body>
+
+    <h1>A segmented Donut chart</h1>
+    
+    <canvas id="cvs" width="350" height="350" style="background-color: black; float: right">[No canvas support]</canvas>
+    
+    <p>
+        This is an example of using the Pie chart that's customised to such a degree
+        that it appears as more like a progress meter or a "percent complete" style meter.
+    </p>
+    
+    <p>
+        The segmentation effect was formerly achieved by a non-insignificant amount of custom code.
+        Now though, it's created by using the <code>RGraph.SegmentedMeter</code> custom class that's a part
+        of the Pie chart library file.
+    </p>
+    
+    <p>
+        This library handles all of the drawing for you and you can either use the <code>draw()</code>
+        method to simply draw the meter or to get an animation you can also use the <code>roundRobin()</code>
+        effect.
+    </p>
+    
+    <p>
+        The chart is quite small and fits well on smaller devices so it doesn't need a lot changing
+        with the <code>responsive()</code> function. The only thing that's done is the CSS
+        <code>float</code> of the canvas tag is removed.
+    </p>
+
+    
+    
+    <script>
+        segmented = new RGraph.SegmentedMeter({
+            id: 'cvs',
+            max: 100,
+            value: 70,
+            options: {
+                //backgroundColor: 'black',
+                //value: true,
+                //valuePercentage: false,
+                //valueUnitsPre: '',
+                //valueDecimals: 1,
+                //valueBold: null,
+                //valueItalic: null,
+                //valueFont: null,
+                //colors: ['red','white']
+                variantDonutWidth: 55,
+                marginTop: 15,
+                marginBottom: 15,
+                marginLeft: 15,
+                marginRight: 15,
+                valueUnitsPost: '%',
+                valueColor: '#aaa',
+                valueSize: 60
+            }
+        }).roundRobin({frames: 60}).responsive([
+            {maxWidth: null,css:{'float':'right'}},
+            {maxWidth: 700,css:{'float':'none'}}
+        ]);
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="350" height="350"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <div id="dynamic-source-code"></div>
+    <script>showSource()</script>
+    
+</body>
+</html>

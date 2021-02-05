@@ -1,0 +1,114 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+    <script src="demos.js" ></script>
+
+    <title>RGraph demo: A horseshoe Pie chart</title>
+    
+    
+    <meta name="description" content="A Pie/Donut chart that's using the dedicated RGraph.Horseshoe class in order to make it appear as a circular meter." />
+     
+    <!-- <RGRAPH_REMOVE> -->
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- </RGRAPH_REMOVE> -->
+
+</head>
+<body>
+
+    
+
+    <h1>A horseshoe Pie chart</h1>
+
+    <canvas id="cvs" width="300" height="300" style="float: right">[No canvas support]</canvas>
+    
+    <p>
+        Here's a <code>Pie</code> chart that's using the <code>RGraph.Horseshoe</code> class. So by using this it
+        actually appears on the page as a meter instead of a regular <code>Pie</code> chart.
+    </p>
+    
+    <p>
+        Formerly, a significant amount of code was needed to achieve this but now it's a simple matter of
+        using the dedicated <code>RGraph.Horseshoe</code> object that's part of the <code>Pie</code> chart file.
+    </p>
+    
+    <p>
+        Basically what the chart is doing is drawing a Pie chart (configured to be a donut chart) with some
+        text being drawn in the center in the <code>draw</code> event (which is called on every frame of
+        the animation).
+    </p>
+    
+    <p>
+        As the value of the <code>Pie</code> chart is updated by the <code>roundRobin()</code> effect the text in the center
+        is updated as well.
+    </p>
+    
+    <p>
+        The gray background to the chart is drawn using the <code>beforedraw</code> event.
+    </p>
+    
+    <p>
+        And the two ends to the circle are actually each made up from a circle which has one color for
+        the fill (black by default) and another for the stroke (white by default).
+    </p>
+    
+    <p>
+        It used to take a significant amount of code to create this chart, but as you can see from the code
+        shown here that is no longer the case.
+    </p>
+
+    <br clear="all" />
+    
+    <script>
+        new RGraph.HorseshoeMeter({
+            id: 'cvs',
+            min: 0,
+            max: 100,
+            value: 65,
+            options: {
+                // Some options which you can give if you choose to:
+                //
+                //colors: ['red', 'pink'],
+                //width: 25,
+                //textSize: 65,
+                //textColor: 'red',
+                //textBold: true,
+                //textItalic: true,
+                //textFont: 'Georgia'
+                //animationCallback: function () {$a('Finished!');}, // These can also be given as arguments to the animation function
+                //animationOptions: {frames: 120}                    // Doesn't need to be a string
+            }
+        //}).draw();
+        //}).roundRobin();
+        }).roundRobin(
+            {frames: 60},
+            function () {console.log('Animation complete!');}
+        );
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="../libraries/RGraph.common.core.js"&gt;&ly;/script&gt;
+&lt;script src="../libraries/RGraph.pie.js"&gt;&lt;/script>&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="300" height="300" style="border: 1px solid #ddd"&gt;[No canvas support]&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <div id="dynamic-source-code"></div>
+    <script>showSource()</script>
+
+</body>
+</html>

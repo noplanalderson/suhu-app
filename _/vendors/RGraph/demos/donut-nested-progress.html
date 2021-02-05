@@ -1,0 +1,87 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+    <script src="demos.js" ></script>
+
+    <title>RGraph demo: A nested Donut chart progress bar</title>
+    <meta name="description" content="A Donut chart that uses the custom RGraph.ActivityMeter class." />
+    
+    <!-- <RGRAPH_REMOVE> -->
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- </RGRAPH_REMOVE> -->
+
+</head>
+<body>
+
+    <h1>A nested Donut chart progress bar</h1>
+    
+    <canvas id="cvs" width="450" height="450" style="background-color: black; float: right">[No canvas support]</canvas>
+    
+    <p>
+        This is an example of the new (in RGraph 5.2) <code>RGraph.ActivityMeter</code> custom class that
+        resides in the Pie chart library. Previously to get this sort of chart a large amount of custom
+        code was necessary but now the chart has been given its own class - which resides in the Pie
+        chart library.
+    </p>
+    
+    <p>
+        The colors and quantity of the rings is specified by you and the icons are configurable (or can be
+        replaced with text if you prefer.
+    </p>
+
+    
+    
+    <script>
+        // The definitions of the rings, their values, colors and radius.
+        activity = new RGraph.ActivityMeter({
+            id: 'cvs',
+            config: [
+                {color: '#2B908F', value: 67, image: '../images/activityMeter-arrowright.png' , _label_: 'A' }, // You can have either a label or an image
+                {color: '#90EE7E', value: 57, image: '../images/activityMeter-arrowup.png'   ,  _label_: 'B' }, // You can have either a label or an image
+                {color: '#F45B5B', value: 46, image: '../images/activityMeter-arrowdown.png',   _label_: 'C' }  // You can have either a label or an image
+            ],
+            options: {
+                variantDonutWidth: 50,
+                marginTop: 5,
+                marginBottom: 5,
+                marginLeft: 5,
+                marginRight: 5,
+                labelColor: 'black',
+                labelFont: 'Monospace',
+                labelSize: 28,
+                labelBold: true,
+                labelItalic: true
+            }
+        }).roundRobin();
+    </script>
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="450" height="450"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <div id="dynamic-source-code"></div>
+    <script>showSource()</script>
+    
+</body>
+</html>

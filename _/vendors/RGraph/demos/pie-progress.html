@@ -1,0 +1,143 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.rose.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+    <script src="demos.js" ></script>
+    
+    <title>RGraph demo: A progress-bar Pie/Donut chart</title>
+
+
+    
+    <meta name="description" content="A progress bar Pie/Donut chart. Formerly this necessitated a significant amount of custom coding, however now it has been converted into a custom class so the code has been greatly reduced." />
+     
+    <!-- <RGRAPH_REMOVE> -->
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- </RGRAPH_REMOVE> -->
+
+</head>
+<body>    
+
+    <h1>A progress-bar Pie/Donut chart</h1>
+
+    <canvas id="cvs" width="400" height="400" style="float: right">[No canvas support]</canvas>
+    
+    <p>
+        Here's an interesting variation on a Pie chart/Progress bar. It's one way to show
+        multiple progress values that might make more sense when they're circular. Previously (before version
+        5.23) this chart required custom coding to achieve it using the background grid from a Rose chart and
+        the rings from a Pie chart. However now it has been converted into a custom object so it can be
+        created using code that's a lot simpler. It's still necessary to include both the Rose and Pie
+        chart libraries.
+    </p>
+    
+    <p>
+        You can see the code that creates the chart below and how easy it is to implement.
+    </p>
+    
+    <p>
+        As mentioned above, the chart also uses the Rose chart in order to draw the
+        background grid - not something that the Pie chart has or does.
+    </p>
+    
+    <p>
+        Basically, after the Rose chart has drawn the grid the Pie charts are then drawn on
+        top of it and a custom label is drawn by using the API function
+        <code>RGraph.text()</code> (which is a function that makes adding text to the canvas a
+        breeze).
+    </p>
+    
+    <p>
+        If you want to add animation then the <code>grow()</code> effect looks nice
+        though because there's multiple Pie charts on the canvas and they'll all be animating at the same
+        time you might find that a CSS based effect is smoother if you have many rings/values.
+    </p>
+
+    <br clear="all" />
+    
+    <script>
+        new RGraph.RadialProgress({
+            id: 'cvs',
+            max: 100,
+            data: [28,19,39,45],
+            options: {
+                //marginLeft: 50,
+                //marginRight: 50,
+                //marginTop: 50,
+                //marginBottom: 50,
+                
+                //textAccessible: true,
+                //textAccessibleOverflow: true,
+                //textAccessiblePointerevents: false,
+
+                colors: ['blue','gray','green','red','orange','brown'],
+                colorsSequential: true,
+
+                labels: ['Month 1','Month 2','Month 3','Month 4'],
+                labelsBold: true,
+                labelsItalic: true,
+                //labelsFont: 'Verdana',
+                //labelsColor: 'red',
+                //labelsSize: 8,
+                //margin:     15,
+
+                tooltips:                        ['Result: %{key}'],
+                // tooltipsEvent:                   'onclick',
+                // tooltipsEffect:                  'fade'
+                // tooltipsOffsetx:                 0,
+                // tooltipsOffsety:                 0,
+                 tooltipsCss:                       {
+                    fontSize: '20pt',
+                    textAlign: 'left'
+                 },
+                // tooltipsCssClass:                'RGraph_tooltip',
+                // tooltipsHighlight:               true,
+                // tooltipsFormattedThousand:       ',',
+                // tooltipsFormattedPoint:          '.',
+                // tooltipsFormattedDecimals:       0,
+                // tooltipsFormattedUnitsPre:       '',
+                //tooltipsFormattedUnitsPost:      '%',
+                // tooltipsFormattedKeyColors:      null,
+                // tooltipsFormattedKeyColorsShape: 'square',
+                tooltipsFormattedKeyLabels:      ['Jenny','Richard','Dave','Kev']
+            }
+        }).grow();
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.rose.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="600"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <div id="dynamic-source-code"></div>
+    <script>showSource()</script>
+    
+
+
+    
+
+</body>
+</html>
