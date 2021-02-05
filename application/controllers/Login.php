@@ -27,7 +27,7 @@ class Login extends SIMONSTER_Core {
 
 	public function index()
 	{
-		$this->_modul 	= 'account/login';
+		$this->_module 	= 'account/login_view';
 		$this->_data 	= array(
 			'title' 	=> $this->app->app_title . ' - Login',
 			'custom_js'	=> $this->_script()
