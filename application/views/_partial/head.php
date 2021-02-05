@@ -5,12 +5,9 @@
 	<meta charset="utf-8">
 	<title><?= $title ?></title>
 
-	<!-- Site favicon -->
-	<?= show_image('onelove-icon-180x180.png', 'icon', 'rel="apple-touch-icon" sizes="180x180"') ?>
+	<!-- App favicon -->
 
-	<?= show_image('onelove-icon-32x32.png', 'icon', 'rel="icon" type="image/png" sizes="32x32"') ?>
-
-	<?= show_image('onelove-icon-16x16.png', 'icon', 'rel="icon" type="image/png" sizes="16x16"') ?>
+	<?= show_image($this->app->app_icon, 'icon', 'rel="icon" type="image/png" sizes="16x16"') ?>
 	
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
