@@ -16,7 +16,7 @@ if (! function_exists('load_cache'))
 		$CI =& get_instance();
 		$value = (is_null($value) || !is_array($value)) ? [$value] : $value;
 
-		if($model !== 'site_m') {
+		if($model !== 'app_m') {
 			$CI->load->model($model);
 		}
 
