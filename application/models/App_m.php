@@ -18,7 +18,7 @@ class App_m extends CI_Model {
 		$this->db->select('a.menu_label, a.menu_link, a.menu_icon');
 		$this->db->join('tb_roles b', 'a.menu_id = b.menu_id', 'inner');
 		$this->db->where('a.menu_location', 'submenu');
-		$this->db->where('a.parent_id', $parent_id);
+		$this->db->where('a.menu_parent', $parent_id);
 		$this->db->where('b.type_id', $this->session->userdata('gid'));
 		$this->db->order_by('a.menu_id', 'asc');
 		return $this->db->get('tb_menu a')->result_array();
