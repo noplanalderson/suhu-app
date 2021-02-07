@@ -6,7 +6,7 @@ class Login_m extends CI_Model {
 	public function verify($user_name)
 	{
 		$this->db->select('user_id, type_id, user_password');
-		$this->db->where('is_active', 'yes');
+		$this->db->where('is_active', 'Y');
 		$this->db->group_start();
 		$this->db->where('user_name', $user_name);
 		$this->db->or_where('user_email', $user_name);
