@@ -1,6 +1,6 @@
 
 	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
-		<div class="container">
+		<div class="container mt-lg-5">
 			<div class="row align-items-center">
 				<div class="col-md-12 col-lg-12">
 					<div class="login-box bg-dark box-shadow border-radius-10">

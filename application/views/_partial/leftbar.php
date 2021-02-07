@@ -1,8 +1,8 @@
 	<div class="left-side-bar">
-		<div class="brand-logo">
-			<a href="index.html">
-				<?= show_image('onelove-logo-dark.png', 'image', 'alt="logo" class="dark-logo"')?>
-				<?= show_image('onelove-logo-light.png', 'image', 'alt="logo" class="light-logo"')?>
+		<div class="brand-logo ml-4">
+			<a href="<?= base_url('dashboard') ?>">
+				<?= show_image($this->app->app_logo_dark, 'image', 'alt="logo" class="dark-logo"')?>
+				<?= show_image($this->app->app_logo_light, 'image', 'alt="logo" class="light-logo"')?>
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -16,28 +16,30 @@
 				<ul id="accordion-menu">
 					<?php 
 						foreach ($this->menus as $menu) :
-							if(!is_null($menu['menu_id'])) :?>
+							$submenus = $this->app_m->getSubMenu($menu['menu_id']);
+			            	if(empty($submenus)):
+					?>
 
 					<li>
 						<a href="<?= base_url($menu['menu_link']) ?>" class="dropdown-toggle no-arrow">
 							<span class="micon <?= $menu['menu_icon'] ?>"></span><span class="mtext"><?= $menu['menu_label'] ?></span>
 						</a>
 					</li>
-							<?php else : ?>
+					<?php else : ?>
 
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon <?= $menu['menu_icon'] ?>"></span><span class="mtext"><?= $menu['menu_label'] ?></span>
 						</a>
 						<ul class="submenu">
-							<?php foreach(load_cache('main_menu', 'site_m', 'getSubMenu', NULL, 300) as $submenu) :?>
-							
+							<?php foreach ($submenus as $submenu): ?>
+
 							<li><a href="<?= base_url($submenu['menu_link']) ?>"><?= $submenu['menu_label'] ?></a></li>
 							<?php endforeach;?>
 
 						</ul>
 					</li>
-						<?php endif; endforeach; ?>
+					<?php endif; endforeach; ?>
 
 					<li>
 						<div class="dropdown-divider"></div>
