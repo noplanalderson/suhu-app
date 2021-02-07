@@ -37,7 +37,7 @@ class SIMONSTER_Core extends CI_Controller
 	*/
 	public $_partial = array(
 		'head',
-		'loader',
+		// 'loader',
 		'header',
 		'rightbar',
 		'leftbar',
