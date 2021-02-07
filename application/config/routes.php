@@ -50,5 +50,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'login';
-$route['404_override'] = 'error/404';
+$route['error/(:num)'] = 'page_error/index/$1';
+$route['404_override'] = 'page_error/index';
+$route['get-logs'] = 'dashboard/getLogs';
+$route['sensor-management'] = 'sensor_management/index';
+$route['add-sensor'] = 'sensor_management/add_sensor';
+$route['edit-sensor'] = 'sensor_management/edit_sensor';
+$route['get-sensor'] = 'sensor_management/get_sensor';
+$route['delete-sensor'] = 'sensor_management/delete_sensor'; 
 $route['translate_uri_dashes'] = TRUE;
