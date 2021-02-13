@@ -20,12 +20,12 @@
  * dow - Day of Week (number of days) - 0 to 7 (0 and 7 are days of the week)
  *
  * 
- * @package Suhu App
+ * @package SIMONSTER
  * @author Nikola Malich, Muhammad Ridwan Na'im (@__debu_semesta)
  * @source https://code.tutsplus.com/tutorials/managing-cron-jobs-with-php--net-19428
  * 
  */
-defined('BASEPATH') OR exit('No direct scrit access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cronjob
 {
@@ -132,11 +132,8 @@ class Cronjob
  
 	public function append_cronjob()
 	{
-	    // if (is_null($cron_jobs)) $this->error_message("Nothing to append!  Please specify a cron job or an array of cron jobs.");
-	     
 	    $append_cronfile = "echo '";        
 	     
-	    // $append_cronfile .= (is_array($cron_jobs)) ? implode("\n", $cron_jobs) : $cron_jobs;
 	    $append_cronfile .= $this->script;
 	     
 	    $append_cronfile .= "'  >> {$this->cron_file}";
@@ -148,17 +145,17 @@ class Cronjob
 	    return $this;
 	}
  
-	public function remove_cronjob($cron_jobs = NULL)
+	public function remove_cronjob($cron_job = NULL)
 	{
-	    if (is_null($cron_jobs)) $this->error_message("Nothing to remove!  Please specify a cron job or an array of cron jobs.");
+	    if (is_null($cron_job)) $this->error_message("Nothing to remove!  Please specify a cron job.");
 
 	    $this->write_to_file();
 	 
-	    $cron_array = file($this->cron_file, FILE_IGNORE_NEW_LINES);
+	    $cron = file($this->cron_file, FILE_IGNORE_NEW_LINES);
 	     
-	    if (empty($cron_array)) $this->error_message("Nothing to remove!  The cronTab is already empty.");
+	    if (empty($cron)) $this->error_message("Nothing to remove!  The cronTab is already empty.");
 	     
-	    $original_count = count($cron_array);
+	    $original_count = count($cron);
 	     
 	    if (is_array($cron_jobs))
 	    {
@@ -166,24 +163,11 @@ class Cronjob
 	    }
 	    else
 	    {
-	        $cron_array = preg_grep($cron_jobs, $cron_array, PREG_GREP_INVERT);
+	        $cron_array = preg_grep($cron_job, $cron, PREG_GREP_INVERT);
 	    }   
 	     
-	    return ($original_count === count($cron_array)) ? $this->remove_file() : $this->remove_crontab()->append_cronjob($cron_array);
+	    return ($original_count === count($cron)) ? $this->remove_file() : $this->remove_crontab()->append_cronjob($cron_array);
 	}
-
-    public function check_cron($cron_jobs = NULL)
-    {
-        if (is_null($cron_jobs)) $this->error_message("Nothing to remove!  Please specify a cron job or an array of cron jobs.");
-
-        $this->write_to_file();
-
-        $cron_array = file($this->cron_file, FILE_IGNORE_NEW_LINES);
-     
-        if(!empty($cron_array)) {
-            return true;
-        }
-    }
 
 	public function remove_crontab()
 	{
@@ -192,6 +176,11 @@ class Cronjob
 	    return $this;
 	}
  
+    public function removeSingleCron($command)
+    {
+        $this->exec("crontab -l | grep -v '".$command."' | crontab -");
+    }
+
 	private function crontab_file_exists()
 	{
 	    return file_exists($this->cron_file);
