@@ -7,19 +7,19 @@
 					<div class="col-xl-4">
 						<div style="width: 250px; height: 250px; border-radius: 250px;">
 						    <canvas id="temp_<?= $sensor->thermo_hash ?>" width="250" height="180">[No canvas support]</canvas>
-						    <p style="margin-top:-1rem;font-size: 8pt">50°C<br/>Temperature (°C)</p>
+						    <p class="temp_<?= $sensor->thermo_hash ?>" style="margin-top:-1rem;font-size: 8pt"></p>
 						</div>
 					</div>
 					<div class="col-xl-4">
 						<div style="width: 250px; height: 250px; border-radius: 250px;">
 						    <canvas id="hum_<?= $sensor->thermo_hash ?>" width="250" height="180">[No canvas support]</canvas>
-						    <p style="margin-top:-1rem;font-size: 8pt">50%<br/>Humidity (%)</p>
+						    <p class="hum_<?= $sensor->thermo_hash ?>" style="margin-top:-1rem;font-size: 8pt"></p>
 						</div>
 					</div>
 					<div class="col-xl-4">
 						<div style="width: 250px; height: 250px; border-radius: 250px;">
 						    <canvas id="dew_<?= $sensor->thermo_hash ?>" width="250" height="180">[No canvas support]</canvas>
-						    <p style="margin-top:-1rem;font-size: 8pt">16°C<br/>Dew Point (°C)</p>
+						    <p class="dew_<?= $sensor->thermo_hash ?>" style="margin-top:-1rem;font-size: 8pt"></p>
 						</div>
 					</div>
 				</div>
