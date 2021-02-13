@@ -7,7 +7,7 @@ class Sensor_management extends SIMONSTER_Core
 	{
 		parent::__construct();
 		$this->access_control->check_login();
-		// $this->access_control->check_role();
+		$this->access_control->check_role();
 
 		$this->load->model('sensor_m');
 
@@ -97,9 +97,32 @@ class Sensor_management extends SIMONSTER_Core
 		        	'required' => '{field} required',
                     'regex_match' => 'Permit Character(s) for {field} are [a-zA-Z0-9 \-_].'
                 )
+			),
+			array(
+				'field' => 'thermo_location',
+		        'label' => 'Sensor Location',
+		        'rules' => 'regex_match[/[a-zA-Z0-9 \-_]+$/]|required',
+		        'errors'=> array(
+		        	'required' => '{field} required',
+                    'regex_match' => 'Permit Character(s) for {field} are [a-zA-Z0-9 \-_].'
+                )
+			),
+			array(
+				'field' => 'is_active',
+		        'label' => 'Sensor Status',
+		        'rules' => 'regex_match[/(yes|no)$/]|required',
+		        'errors'=> array(
+		        	'required' => '{field} required',
+                    'regex_match' => 'Sensor Status Must Yes or No.'
+                )
 			)
 		);
 		return $rules;
+	}
+
+	function cron_check($cron)
+	{
+		return preg_match('/^(((0|[1-5]?[0-9])|[\*]{1}) ((0|[1]?[1-9]|2[0-3])|[\*]{1}) ((1|[1-2]?[0-9]|3[0-1])|[\*]{1}) ((1|[1]?[0-2])|[\*]{1}) ([0-7]{1}|[\*]{1}))$/', $cron) ? true : false;
 	}
 
 	public function add_sensor()
@@ -112,45 +135,56 @@ class Sensor_management extends SIMONSTER_Core
 			$thermo_hash = base64url_encode(hash_hmac('sha3-256', random_string(16), openssl_random_pseudo_bytes(16)));
 
 			$script_path	= FCPATH . 'scheduler/';
-			$scheduler		= 'scheduler-' . $thermo_hash . '.sh';
-			$script_file	= fopen($script_path . $scheduler, "w") or die("Unable to open file!");
-			$command 		= "#!/bin/bash\n/usr/bin/curl -k '".base_url('get-suhu/'.$thermo_hash)."'";
+			$script_file	= 'scheduler-' . $thermo_hash . '.sh';
+			$script_file	= fopen($script_path . $script_file, "w") or die("Unable to open file!");
+			$command 		= "#!/bin/bash\n/usr/bin/curl -k '".base_url('get-temp/'.$thermo_hash)."'";
 			
 			fwrite($script_file, $command);
 			fclose($script_file);
 
-			chmod($script_path . $scheduler, 0655);
+			chmod($script_path . $script_file, 0655);
 
-			$sensor = array(
-				'thermo_hash' => $thermo_hash,
-				'installation_date' => strtotime(date('Ymd')),
-				'thermo_url' => $post['thermo_url'],
-				'thermo_location' => $post['thermo_location'],
-				'is_active' => $post['is_active']
-			);
+			$cron_schedule = $post['minute'] . ' ' . $post['hour'] . ' ' . $post['date'] . ' ' . $post['month'] . ' ' . $post['day_of_week'];
 
-			if($this->sensor_m->addSensor($sensor))
+			if($this->cron_check($cron_schedule) == true)
 			{
-				if($post['is_active'] == 'yes')
-				{					
-					$config = array(
-						'path' => $script_path,
-						'handle' => 'crontab.txt',
-						'scheduler' => '1 * * * *',
-						'script_file' => $scheduler,
-					);
-					$this->load->library('cronjob', $config);
-					$this->cronjob->create_script();
-					$this->cronjob->append_cronjob();
-				}
+				$sensor = array(
+					'thermo_hash' => $thermo_hash,
+					'installation_date' => strtotime(date('Ymd')),
+					'thermo_url' => $post['thermo_url'],
+					'thermo_location' => $post['thermo_location'],
+					'cron_schedule' => $cron_schedule,
+					'is_active' => $post['is_active']
+				);
 
-				$status = 1;
-				$msg = 'Sensor Added.';
+				if($this->sensor_m->addSensor($sensor))
+				{
+					if($post['is_active'] == 'yes')
+					{					
+						$config = array(
+							'path' => $script_path,
+							'handle' => 'crontab.txt',
+							'scheduler' => $cron_schedule,
+							'script_file' => $script_file,
+						);
+						$this->load->library('cronjob', $config);
+						$this->cronjob->create_script();
+						$this->cronjob->append_cronjob();
+					}
+
+					$status = 1;
+					$msg = 'Sensor Added.';
+				}
+				else
+				{
+					$status = 0;
+					$msg = 'Failed to Add Sensor.';
+				}
 			}
 			else
 			{
 				$status = 0;
-				$msg = 'Failed to Add Sensor.';
+				$msg = 'Invalid Cron Schedule Format.';
 			}
 		}
 		else
@@ -171,46 +205,52 @@ class Sensor_management extends SIMONSTER_Core
 		
 		if ($this->form_validation->run() == TRUE) 
 		{
-			$sensor = array(
-				'thermo_url' => $post['thermo_url'],
-				'thermo_location' => $post['thermo_location'],
-				'is_active' => $post['is_active']
-			);
+			$cron_schedule = $post['minute'] . ' ' . $post['hour'] . ' ' . $post['date'] . ' ' . $post['month'] . ' ' . $post['day_of_week'];
 
-			if($this->sensor_m->editSensor($sensor, $post['thermo_hash']))
+			if($this->cron_check($cron_schedule) == true)
 			{
-				$script_path = FCPATH . 'scheduler/';
-				$scheduler = 'scheduler-' . $post['thermo_hash'] . '.sh';
-
-				$cron_regex = ltrim(FCPATH . 'scheduler/' . $scheduler, '/');
-				$cron_regex = str_replace('/', '\/', $cron_regex);
-				$cron_regex = '/'.str_replace('.', '\.', $cron_regex).'/';
-
-				$config = array(
-					'path' => $script_path,
-					'handle' => 'crontab.txt',
-					'scheduler' => '1 * * * *',
-					'script_file' => $scheduler,
+				$sensor = array(
+					'thermo_url' => $post['thermo_url'],
+					'thermo_location' => $post['thermo_location'],
+					'cron_schedule' => $cron_schedule,
+					'is_active' => $post['is_active']
 				);
-				$this->load->library('cronjob', $config);
 
-				if($this->cronjob->check_cron($cron_regex) == true) {
-					$this->cronjob->remove_cronjob($cron_regex);
-				}
-
-				if($post['is_active'] == 'yes')
+				if($this->sensor_m->editSensor($sensor, $post['thermo_hash']))
 				{
-					$this->cronjob->create_script();
-					$this->cronjob->append_cronjob();
-				}
+					$path = FCPATH . 'scheduler/';
+					$script_file = 'scheduler-' . $post['thermo_hash'] . '.sh';
 
-				$status = 1;
-				$msg = 'Sensor Edited.';
+					$cron_regex = $path . $script_file;
+
+					$config = array(
+						'path' => $path,
+						'handle' => 'crontab.txt',
+						'scheduler' => $cron_schedule,
+						'script_file' => $script_file,
+					);
+					$this->load->library('cronjob', $config);
+					$this->cronjob->removeSingleCron($cron_regex);
+
+					if($post['is_active'] == 'yes')
+					{
+						$this->cronjob->create_script();
+						$this->cronjob->append_cronjob();
+					}
+
+					$status = 1;
+					$msg = 'Sensor Edited.';
+				}
+				else
+				{
+					$status = 0;
+					$msg = 'Failed to Edit Sensor.';
+				}
 			}
 			else
 			{
 				$status = 0;
-				$msg = 'Failed to Edit Sensor.';
+				$msg = 'Invalid Cron Schedule Format.';
 			}
 		}
 		else
@@ -237,17 +277,17 @@ class Sensor_management extends SIMONSTER_Core
 		{
 			if($this->sensor_m->deleteSensor($post['id']))
 			{
-				$taskname = FCPATH . 'scheduler/scheduler-' . $post['id'] . '.sh';
-
-				$taskname = ltrim($taskname, '/');
-				$taskname = str_replace('/', '\/', $taskname);
-				$cron_regex = '/'.str_replace('.', '\.', $taskname).'/';
+				$path = FCPATH . 'scheduler/';
+				$script_file = 'scheduler-' . $post['id'] . '.sh';
 				
-				$this->load->library('cronjob');
-
-				if($this->cronjob->check_cron($cron_regex) == true) {
-					$this->cronjob->remove_cronjob($cron_regex);
-				}
+				$config = array(
+					'path' => $path,
+					'script_file' => $script_file,
+				);
+				$this->load->library('cronjob', $config);
+				$this->cronjob->removeSingleCron($path . $script_file);
+				
+				@unlink($taskname);
 				
 				$status = 1;
 				$msg = 'Sensor Deleted.';
@@ -262,42 +302,6 @@ class Sensor_management extends SIMONSTER_Core
 		$token 	= $this->security->get_csrf_hash();
 		$result = array('result' => $status, 'msg' => $msg, 'token' => $token);
 		echo json_encode($result);
-	}
-
-	public function test()
-	{
-		$config = array(
-			'path' => FCPATH . 'scheduler/',
-			'handle' => 'cronTab.txt',
-			'scheduler' => '1 * * * *',
-			'script_file' => 'scheduler-1.sh',
-		);
-		$this->load->library('cronjob', $config);
-		$this->cronjob->create_script();
-		$this->cronjob->append_cronjob();
-	}
-
-	public function testdua()
-	{
-		$taskname = FCPATH . 'scheduler/scheduler-1.sh';
-		$cron_jobs = ltrim($taskname, '/');
-		$cron_jobs = str_replace('/', '\/', $cron_jobs);
-		$cron_jobs = '/'.str_replace('.', '\.', $cron_jobs).'/';
-
-		$config = array(
-			'path' => FCPATH . 'scheduler/',
-			'handle' => 'crontab.txt',
-			'scheduler' => '1 * * * *',
-			'script_file' => 'scheduler-1.sh',
-		);
-		$this->load->library('cronjob', $config);
-		// if($this->cronjob->check_cron($cron_jobs) == true) {
-			$this->cronjob->remove_cronjob($cron_jobs);
-		// }
-		// else
-		// {
-		// 	echo 'gagal';
-		// }
 	}
 }
 /* End of file sensor_management.php */

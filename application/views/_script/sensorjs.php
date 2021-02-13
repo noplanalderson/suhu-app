@@ -3,7 +3,6 @@
         bProcessing: true,
         scrollCollapse: true,
         autoWidth: true,
-        responsive: true,
         searching: false,
         bLengthChange: true,
         bPaginate: true,
@@ -26,6 +25,12 @@
             $('#thermo_hash').val('');
             $('#thermo_url').val('');
             $('#thermo_location').val('');
+            $('#is_active').val('no');
+            $('#minute').val('');
+            $('#hour').val('');
+            $('#date').val('');
+            $('#month').val('');
+            $('#day_of_week').val('');
         });
         $('.edit-sensor').on('click', function() {
             $('.modal-title').html('Edit Sensor');
@@ -47,6 +52,11 @@
                     $('#thermo_url').val(data.thermo_url);
                     $('#thermo_location').val(data.thermo_location);
                     $('#is_active').val(data.is_active);
+                    $('#minute').val(data.minute);
+                    $('#hour').val(data.hour);
+                    $('#date').val(data.date);
+                    $('#month').val(data.month);
+                    $('#day_of_week').val(data.day_of_week);
                 }
             });
         });
@@ -58,6 +68,11 @@
             thermo_hash: $("#thermo_hash").val(),
             thermo_url: $("#thermo_url").val(),
             thermo_location: $("#thermo_location").val(),
+            minute: $("#minute").val(),
+            hour: $("#hour").val(),
+            date: $("#date").val(),
+            month: $("#month").val(),
+            day_of_week: $("#day_of_week").val(),
             is_active: $("#is_active").val(),
             <?= $this->security->get_csrf_token_name();?>: $('input[name="<?= $this->security->get_csrf_token_name();?>"]').attr('value')
         };

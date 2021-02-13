@@ -5,7 +5,7 @@ class Sensor_m extends CI_Model {
 
 	public function getSensors()
 	{
-		$this->db->select('thermo_hash, installation_date, thermo_url, thermo_location, is_active');
+		$this->db->select('thermo_hash, installation_date, thermo_url, thermo_location, cron_schedule, is_active');
 		$this->db->order_by('installation_date', 'asc');
 		return $this->db->get('tb_thermometer')->result();
 	}
@@ -13,7 +13,16 @@ class Sensor_m extends CI_Model {
 	public function getSensorByHash($hash)
 	{
 		$this->db->where('thermo_hash', $hash);
-		return $this->db->get('tb_thermometer')->row_array();
+		$sensor = $this->db->get('tb_thermometer')->row_array();
+
+		$cron = explode(' ', $sensor['cron_schedule']);
+		return array_merge($sensor, array(
+			'minute' => $cron[0],
+			'hour' => $cron[1],
+			'date' => $cron[2],
+			'month' => $cron[3],
+			'day_of_week' => $cron[4]
+		));
 	}
 
 	public function addSensor($sensor)

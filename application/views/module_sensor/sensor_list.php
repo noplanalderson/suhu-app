@@ -35,6 +35,7 @@
 								<th scope="col">Sensor URL</th>
 								<th scope="col">Installed Date</th>
 								<th scope="col">Sensor Location</th>
+								<th scope="col">Cron Schedule</th>
 								<th scope="col">Status</th>
 								<th scope="col">Action</th>
 							</tr>
@@ -46,6 +47,7 @@
 								<td scope="col"><?= $sensor->thermo_url ?></td>
 								<td scope="col"><?= date('d F Y', $sensor->installation_date) ?></td>
 								<td scope="col"><?= $sensor->thermo_location ?></td>
+								<td scope="col"><?= $sensor->cron_schedule ?></td>
 								<td scope="col"><?= ($sensor->is_active == 'yes' ) ? 'Active' : 'Not Active'; ?></td>
 								<td scope="col">
 									<?= button($btn_edit, FALSE, 'a', 'href="#" class="btn btn-small btn-warning edit-sensor" data-toggle="modal" data-target="#sensor" data-id="'.$sensor->thermo_hash.'"');?>
@@ -65,7 +67,7 @@
 	</div>
 
 	<div class="modal fade" id="sensor" tabindex="-1" role="dialog" aria-labelledby="Sensor" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="sensorAction"></h5>
@@ -93,6 +95,25 @@
 						<label class="col-sm-12 col-md-2 col-form-label">Sensor Location</label>
 						<div class="col-sm-12 col-md-10">
 	                    	<input type="text" id="thermo_location" name="thermo_location" class="form-control" placeholder="Location" required="required">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Cronjob Setting (min-hour-date-month-day of week)</label>
+						<div class="col-sm-2 col-md-2">
+	                    	<input type="text" id="minute" name="minute" class="form-control" placeholder="*" required="required">
+						</div>
+						<div class="col-sm-2 col-md-2">
+	                    	<input type="text" id="hour" name="hour" class="form-control" placeholder="*" required="required">
+						</div>
+						<div class="col-sm-2 col-md-2">
+	                    	<input type="text" id="date" name="date" class="form-control" placeholder="*" required="required">
+						</div>
+						<div class="col-sm-2 col-md-2">
+	                    	<input type="text" id="month" name="month" class="form-control" placeholder="*" required="required">
+						</div>
+						<div class="col-sm-2 col-md-2">
+	                    	<input type="text" id="day_of_week" name="day_of_week" class="form-control" placeholder="*" required="required">
 						</div>
 					</div>
 
