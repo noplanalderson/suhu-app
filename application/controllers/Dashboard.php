@@ -52,6 +52,8 @@ class Dashboard extends SIMONSTER_Core {
 
 	public function getLogs()
 	{
+		$this->access_control->check_login();
+		
 		$data = json_encode($this->dashboard_m->getLogs(), JSON_PRETTY_PRINT);
 
 		$this->output->set_status_header(200)
@@ -75,14 +77,6 @@ class Dashboard extends SIMONSTER_Core {
 		);
 	}
 
-	private function _logging($logs)
-	{
-		$this->load->library('logging');
-		$this->logging->initialize($logs);
-		$status = $this->logging->checkValue();
-		return $this->logging->messages($status['status'], $status['color']);
-	}
-
 	public function get_temp($hash = NULL)
 	{
 		$sensor = $this->dashboard_m->getSensorUrl($hash);
@@ -98,7 +92,6 @@ class Dashboard extends SIMONSTER_Core {
 	    curl_close($ch);
 
 		$dataArray = json_decode($sensorData);
-		$logs = [];
 
 		$temp = array(
 			'item' => 'Temperature',
@@ -109,7 +102,9 @@ class Dashboard extends SIMONSTER_Core {
 			'critical_range' => array(10,36),
 			'warn_range' => array('bottom' => [11,17], 'top' => [27,34])
 		);
-		$logs[] = $this->_logging($temp);
+		$this->load->library('logging');
+		$this->logging->initialize($temp);
+		$temp = $this->logging->checkValue();
 	    
 		$hum = array(
 			'item' => 'Humidity',
@@ -120,7 +115,9 @@ class Dashboard extends SIMONSTER_Core {
 			'critical_range' => array(29,71),
 			'warn_range' => array('bottom' => [30,39], 'top' => [61,70])
 		);
-		$logs[] = $this->_logging($hum);
+		$this->load->library('logging');
+		$this->logging->initialize($hum);
+		$hum = $this->logging->checkValue();
 
 		$dew = array(
 			'item' => 'Dew Point',
@@ -129,11 +126,19 @@ class Dashboard extends SIMONSTER_Core {
 			'unit' => '°C',
 			'location' => $dataArray->location,
 			'critical_range' => array(3,16.6),
-			'warn_range' => array('bottom' => [4,5.4], 'top' => [16,15.5])
+			'warn_range' => array('bottom' => [4,5.4], 'top' => [15,16.5])
 		);
-		$logs[] = $this->_logging($dew);
+		$this->load->library('logging');
+		$this->logging->initialize($dew);
+		$dew = $this->logging->checkValue();
 
-		$this->logging->sendLogToEmail($logs);
+		$config = array(
+			'temp_msg' => $temp,
+			'hum_msg' => $hum,
+			'dew_msg' => $dew
+		);
+		$this->load->library('notifier', $config);
+		$this->notifier->sendLogToEmail();
 
 	    $this->dashboard_m->insertTemp($dataArray, $hash);
 
