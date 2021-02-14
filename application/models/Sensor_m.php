@@ -27,17 +27,37 @@ class Sensor_m extends CI_Model {
 
 	public function addSensor($sensor)
 	{
+		$this->db->insert('tb_menu', array(
+			'menu_parent' => 2,
+			'menu_label' => $sensor['thermo_location'],
+			'menu_link' => 'sensor/'.$sensor['thermo_hash'],
+			'menu_icon' => NULL,
+			'menu_location' => 'submenu'
+		));
+		$menu_id = $this->db->insert_id();
+
+		$this->db->insert('tb_roles', array(
+			'type_id' => $this->session->userdata('gid'), 
+			'menu_id' => $menu_id
+		));
+
 		return $this->db->insert('tb_thermometer', $sensor) ? true : false;
 	}
 
 	public function editSensor($sensor, $hash)
 	{
 		$this->db->where('thermo_hash', $hash);
+		$this->db->update('tb_menu', ['menu_label' => $sensor['thermo_location']]);
+		
+		$this->db->where('thermo_hash', $hash);
 		return $this->db->update('tb_thermometer', $sensor) ? true : false;
 	}
 
 	public function deleteSensor($hash)
 	{
+		$this->db->where('menu_link', 'sensor/'.$hash);
+		$this->db->delete('tb_menu');
+
 		$this->db->where('thermo_hash', $hash);
 		return $this->db->delete('tb_thermometer') ? true : false;
 	}

@@ -136,11 +136,11 @@ class Sensor_management extends SIMONSTER_Core
 
 			$script_path	= FCPATH . 'scheduler/';
 			$script_file	= 'scheduler-' . $thermo_hash . '.sh';
-			$script_file	= fopen($script_path . $script_file, "w") or die("Unable to open file!");
+			$write_script	= fopen($script_path . $script_file, "w") or die("Unable to open file!");
 			$command 		= "#!/bin/bash\n/usr/bin/curl -k '".base_url('get-temp/'.$thermo_hash)."'";
 			
-			fwrite($script_file, $command);
-			fclose($script_file);
+			fwrite($write_script, $command);
+			fclose($write_script);
 
 			chmod($script_path . $script_file, 0655);
 
