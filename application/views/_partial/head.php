@@ -36,6 +36,10 @@
 			background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
 			background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
 		}
+		.dataTables_wrapper .dt-buttons {
+		  float:none;  
+		  text-align:center;
+		}
 	</style>
 </head>
 <body>
