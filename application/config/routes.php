@@ -59,5 +59,7 @@ $route['add-sensor'] = 'sensor_management/add_sensor';
 $route['edit-sensor'] = 'sensor_management/edit_sensor';
 $route['get-sensor'] = 'sensor_management/get_sensor';
 $route['delete-sensor'] = 'sensor_management/delete_sensor'; 
+$route['sensor/(:any)'] = 'sensor_data/index/$1';
+$route['sensor-data/(:any)'] = 'sensor_data/getData/$1';
 $route['404_override'] = 'page_error/index';
 $route['translate_uri_dashes'] = TRUE;
