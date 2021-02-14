@@ -1,12 +1,13 @@
 /**
- * @license @product.name@ JS v@product.version@ (@product.date@)
+ * @license Highcharts Gantt JS v9.0.0 (2021-02-02)
+ * @module highcharts/modules/treegrid
+ * @requires highcharts
+ *
  * Tree Grid
  *
- * (c) 2016 Jon Arild Nygard
- *
- * --- WORK IN PROGRESS ---
+ * (c) 2016-2019 Jon Arild Nygard
  *
  * License: www.highcharts.com/license
  */
 'use strict';
-import '../../parts-gantt/TreeGrid.js';
+import '../../Core/Axis/TreeGridAxis.js';

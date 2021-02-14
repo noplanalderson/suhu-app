@@ -1,9 +1,11 @@
 /**
- * @license @product.name@ JS v@product.version@ (@product.date@)
+ * @license Highcharts JS v9.0.0 (2021-02-02)
+ * @module highcharts/themes/avocado
+ * @requires highcharts
  *
- * (c) 2009-2017 Highsoft AS
+ * (c) 2009-2019 Highsoft AS
  *
  * License: www.highcharts.com/license
  */
 'use strict';
-import '../../themes/avocado.js';
+import '../../Extensions/Themes/Avocado.js';

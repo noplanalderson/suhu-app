@@ -1,5 +1,8 @@
 /**
- * @license @product.name@ JS v@product.version@ (@product.date@)
+ * @license Highcharts JS v9.0.0 (2021-02-02)
+ * @module highcharts/modules/drilldown
+ * @requires highcharts
+ *
  * Highcharts Drilldown module
  *
  * Author: Torstein Honsi
@@ -7,4 +10,4 @@
  *
  */
 'use strict';
-import '../../modules/drilldown.src.js';
+import '../../Extensions/Drilldown.js';

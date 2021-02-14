@@ -1,9 +1,10 @@
 /*
- Highcharts JS v6.2.0 (2018-10-17)
+ Highcharts JS v9.0.0 (2021-02-02)
 
- (c) 2009-2017 Highsoft AS
+ (c) 2009-2019 Highsoft AS
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?module.exports=a:"function"===typeof define&&define.amd?define(function(){return a}):a(Highcharts)})(function(a){a.theme={colors:["#FDD089","#FF7F79","#A0446E","#251535"],colorAxis:{maxColor:"#60042E",minColor:"#FDD089"},plotOptions:{map:{nullColor:"#fefefc"}},navigator:{series:{color:"#FF7F79",lineColor:"#A0446E"}}};a.setOptions(a.theme)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/themes/sunset",["highcharts"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,c,b,d){a.hasOwnProperty(c)||(a[c]=d.apply(null,b))}a=a?a._modules:{};b(a,"Extensions/Themes/Sunset.js",[a["Core/Globals.js"],a["Core/Utilities.js"]],function(a,b){b=b.setOptions;a.theme={colors:["#FDD089",
+"#FF7F79","#A0446E","#251535"],colorAxis:{maxColor:"#60042E",minColor:"#FDD089"},plotOptions:{map:{nullColor:"#fefefc"}},navigator:{series:{color:"#FF7F79",lineColor:"#A0446E"}}};b(a.theme)});b(a,"masters/themes/sunset.src.js",[],function(){})});
 //# sourceMappingURL=sunset.js.map
