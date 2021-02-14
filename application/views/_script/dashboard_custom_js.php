@@ -136,4 +136,8 @@
             }
         ]
     });
+
+    setInterval( function () {
+      logs.ajax.reload();
+    }, <?= $this->app->fetch_data_time ?> );
 </script>
