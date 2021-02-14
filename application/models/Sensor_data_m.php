@@ -17,7 +17,6 @@ class Sensor_data_m extends CI_Model {
 			temperature, humidity, dew_point
 		");
 		$this->db->where('thermo_hash', $hash);
-		// $this->db->order_by('datetime', 'asc');
 		$data = $this->db->get('tb_room_temp')->result();
 
 		return array("data" => $data);

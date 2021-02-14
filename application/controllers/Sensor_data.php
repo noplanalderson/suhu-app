@@ -34,6 +34,8 @@ class Sensor_data extends SIMONSTER_Core {
 			'datatables/js/vfs_fonts',
 			'highcharts/code/highcharts',
 			'highcharts/code/highcharts-more',
+			'highcharts/code/modules/exporting',
+			'highcharts/code/modules/offline-exporting',
 			'momentjs/moment.min',
 			'momentjs/moment-timezone.min'
 		);

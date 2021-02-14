@@ -33,9 +33,9 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Date</th>
-								<th scope="col">Temperature</th>
-								<th scope="col">Humidity</th>
-								<th scope="col">Dew Point</th>
+								<th scope="col">Temperature (°C)</th>
+								<th scope="col">Humidity (%)</th>
+								<th scope="col">Dew Point (°C)</th>
 							</tr>
 						</thead>
 						<tbody>

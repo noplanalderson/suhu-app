@@ -1,3 +1,4 @@
+<!-- <script src="https://code.highcharts.com/3.0.9/modules/exporting.js"></script> -->
 <script>
 	var sensorData = $('#sensor-data').DataTable( {
         'processing' : true,
@@ -86,19 +87,18 @@
         ]
     });
 
-    setInterval( function () {
-      sensorData.ajax.reload();
-    }, <?= $this->app->fetch_data_time ?> );
-
     Highcharts.setOptions({
 	    time: {
 	        timezone: 'Asia/Jakarta'
 	    },
+        exporting: {
+          enabled:true
+        }
 	});
 
-    $.getJSON("<?= base_url('sensor-data/graphData/'.$sensor->thermo_hash)?>", function (data) {
-
-		Highcharts.chart('sensorGraph', {
+    function graph(data)
+    {
+    	Highcharts.chart('sensorGraph', {
 			chart: {
 				zoomType: 'x'
 			},
@@ -114,7 +114,7 @@
 			},
 			yAxis: {
 				title: {
-					text: 'Temperature'
+					text: 'Temperature (°C)'
 				}
 			},
 			legend: {
@@ -146,13 +146,23 @@
 					threshold: null
 				}
 			},
-
 			series: [{
 				type: 'area',
 				name: 'Temperature',
 				data: data
-			}]
+			}],
+		});
+    }
+
+    function getData() {
+	    $.getJSON("<?= base_url('sensor-data/graphData/'.$sensor->thermo_hash)?>", function (data) {
+	        graph(data);
 		});
 	}
-	);
+
+	getData();
+    setInterval(function(){
+    	getData();
+      	sensorData.ajax.reload();
+    }, <?= $this->app->fetch_data_time ?>);
 </script>
