@@ -32,9 +32,8 @@ class Logging
 	public function __construct($config = array())
 	{
 		empty($config) OR $this->initialize($config);
-		$this->_CI = get_instance();
 
-		$this->_CI->load->library('email');
+		$this->_CI = get_instance();
 		$this->_CI->load->model('dashboard_m');
 	}
 
@@ -45,56 +44,11 @@ class Logging
 	 * @param	bool	$reset
 	 * @return	Secure_upload
 	 */
-	public function initialize(array $config = array(), $reset = TRUE)
+	public function initialize(array $config = array())
 	{
-		$reflection = new ReflectionClass($this);
-
-		if ($reset === TRUE)
-		{
-			$defaults = $reflection->getDefaultProperties();
-			foreach (array_keys($defaults) as $key)
-			{
-				if ($key[0] === '_')
-				{
-					continue;
-				}
-
-				if (isset($config[$key]))
-				{
-					if ($reflection->hasMethod('set_'.$key))
-					{
-						$this->{'set_'.$key}($config[$key]);
-					}
-					else
-					{
-						$this->$key = $config[$key];
-					}
-				}
-				else
-				{
-					$this->$key = $defaults[$key];
-				}
-			}
+		foreach ($config as $key => $value) {
+			$this->$key = $value;
 		}
-		else
-		{
-			foreach ($config as $key => &$value)
-			{
-				if ($key[0] !== '_' && $reflection->hasProperty($key))
-				{
-					if ($reflection->hasMethod('set_'.$key))
-					{
-						$this->{'set_'.$key}($value);
-					}
-					else
-					{
-						$this->$key = $value;
-					}
-				}
-			}
-		}
-
-		return $this;
 	}
 
 	public function checkValue()
@@ -127,9 +81,9 @@ class Logging
 			);
 		}
 
-		$status = '';
+		$status = 'NORMAL';
 		
-		$color = '';
+		$color = 'text-success';
 
 		if($this->value <= $this->critical_range['bottom'] || $this->value >= $this->critical_range['top'])
 		{
@@ -142,44 +96,19 @@ class Logging
 			$status = 'WARNING';
 			$color = 'text-warning';
 		}
-
-		return ['status' => $status, 'color' => $color];
+		
+		return $this->messages($status, $color);
 	}
 
-	public function messages($status, $color)
+	private function messages($status, $color)
 	{
 		$msg = "<p class='".$color."'><b>[".$status."]</b> ".$this->item." at ".$this->location." (".$this->value.$this->unit.")</p>";
 
-		if($status == 'CRITICAL' || $status == 'WARNING') {
+		if($status == 'WARNING' || $status == 'CRITICAL')
+		{
 			$this->_CI->dashboard_m->insertLog(['timestamp' => $this->timestamp, 'message' => $msg]);
 		}
 
-		return ['status' => $status, 'message' => $msg];
-	}
-
-	public function sendLogToEmail($logs = array())
-	{
-		$from = $this->_CI->config->item('smtp_user');
-
-		$list = $this->_CI->dashboard_m->getEmails();
-
-		for ($i = 0; $i < count($logs); $i++) {
-			
-			if($logs[$i]['status'] == 'CRITICAL' || $logs[$i]['status'] == 'WARNING')
-			{
-				foreach ($list as $name => $address)
-				{
-				    $this->_CI->email->clear();
-
-				    $this->_CI->email->to($address);
-				    $this->_CI->email->set_newline("\r\n");
-				    $this->_CI->email->from($from);
-				    $this->_CI->email->subject('SIMONSTER ALERT');
-				    $this->_CI->email->message(implode('<br/>', $logs[$i]['message']));
-				    $this->_CI->email->set_mailtype('html');
-				    $this->_CI->email->send();
-				}
-			}
-		}
+		return $msg;
 	}
 }
