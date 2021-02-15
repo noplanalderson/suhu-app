@@ -1,5 +1,20 @@
 	<div class="main-container">
 		<div class="pd-ltr-20">
+			<div class="page-header">
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<div class="title">
+							<h4>Dashboard</h4>
+						</div>
+						<nav aria-label="breadcrumb" role="navigation">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="<?= base_url() ?>">SIMONSTER</a></li>
+								<li class="breadcrumb-item active">Dashboard</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
 			<?php foreach ($sensors as $sensor) :?>
 			<div class="card-box mb-30 pd-20">
 				<h2 class="h4 mb-20"><?= $sensor->thermo_location ?></h2>
