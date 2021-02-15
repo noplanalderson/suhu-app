@@ -14,7 +14,7 @@ function encrypt($string)
 	 * @return $blok[i]
 	 * 
 	*/
-	$hash  = md5($string);
+	$hash  = md5(sha1($string));
 	$blok1 = substr($hash, 0,8);
 	$blok2 = substr($hash, 8,8);
 	$blok3 = substr($hash, 16,4);
@@ -98,4 +98,20 @@ function base64url_decode($data, $strict = false)
 
   // Decode Base64 string and return the original data
   return base64_decode($b64, $strict);
+}
+
+function passwordHash($plaintext, $param = NULL)
+{
+	if (version_compare(PHP_VERSION, '7.3', '>='))
+	{
+		return password_hash($plaintext, PASSWORD_ARGON2ID, $param);
+	}
+	elseif(version_compare(PHP_VERSION, '7.2', '<='))
+	{
+		return password_hash($plaintext, PASSWORD_ARGON2I, $param);
+	}
+	else
+	{
+		return password_hash($plaintext, PASSWORD_DEFAULT);
+	}
 }
