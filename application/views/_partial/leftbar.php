@@ -48,9 +48,9 @@
 						<div class="sidebar-small-cap">Akun Anda</div>
 					</li>
 					<li>
-						<a href="<?= base_url('pengaturan-akun')?>" class="dropdown-toggle no-arrow">
+						<a href="<?= base_url('account-setting')?>" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-settings"></span>
-							<span class="mtext">Pengaturan Akun</span>
+							<span class="mtext">Account Setting</span>
 						</a>
 					</li>
 					<li>
