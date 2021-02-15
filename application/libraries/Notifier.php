@@ -37,17 +37,20 @@ class Notifier
 
 		$list = $this->_CI->dashboard_m->getEmails();
 
-		foreach ($list as $name => $address)
+		if(!empty($list))
 		{
-		    $this->_CI->email->clear();
+			foreach ($list as $name => $address)
+			{
+			    $this->_CI->email->clear();
 
-		    $this->_CI->email->to($address);
-		    $this->_CI->email->set_newline("\r\n");
-		    $this->_CI->email->from($from);
-		    $this->_CI->email->subject('SIMONSTER ALERT');
-		    $this->_CI->email->message($this->msgLists());
-		    $this->_CI->email->set_mailtype('html');
-		    $this->_CI->email->send();
+			    $this->_CI->email->to($address);
+			    $this->_CI->email->set_newline("\r\n");
+			    $this->_CI->email->from($from);
+			    $this->_CI->email->subject('SIMONSTER ALERT');
+			    $this->_CI->email->message($this->msgLists());
+			    $this->_CI->email->set_mailtype('html');
+			    $this->_CI->email->send();
+			}
 		}
 	}
 }
