@@ -37,4 +37,42 @@
         });
         return false;
     });
+
+    $("#formActivation").on('submit', function(e) {
+        e.preventDefault();
+        
+        var formAction = $("#formActivation").attr('action');
+        var dataActive = {
+            submit: $("#submitPassword").attr('name'),
+            user_token: $("#user_token").val(),
+            user_password: $("#user_password").val(),
+            user_password_repeat: $("#user_password_repeat").val(),
+            <?= $this->security->get_csrf_token_name();?>: $('input[name="<?= $this->security->get_csrf_token_name();?>"]').attr('value')
+        };
+
+        $.ajax({
+            type: "POST",
+            url: formAction,
+            data: dataActive,
+            dataType: 'json',
+            success: function(data) {
+                $('input[name="<?= $this->security->get_csrf_token_name();?>"]').val(data.token);
+                $("#msg_active").removeAttr('style');
+                
+                if (data.result == 1) {
+                    $('#msg_active').attr('class', 'alert alert-success');
+                    $('.msg_active').html(data.msg);
+                    $("#msg_active").slideDown('slow');
+                    $("#msg_active").alert().delay(6000).slideUp('slow');
+                    setTimeout(function () { window.location.href = "<?= base_url('login');?>";}, 2000);
+                } else {
+                    $('#msg_active').attr('class', 'alert alert-danger');
+                    $('.msg_active').html(data.msg);
+                    $("#msg_active").slideDown('slow');
+                    $("#msg_active").alert().delay(3000).slideUp('slow');
+                }
+            }
+        });
+        return false;
+    });
 </script>

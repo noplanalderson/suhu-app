@@ -47,6 +47,18 @@ class Login_m extends CI_Model {
 		$this->db->where('user_agent', ua());
 		$this->db->update('tb_login_data', ['cookie_value' => NULL, 'cookie_expire' => NULL]);
 	}
+
+	public function getUserByToken($token)
+	{
+		$this->db->where('user_token', $token);
+		return $this->db->get('tb_user')->num_rows();
+	}
+	
+	public function doActivation($active, $token)
+	{
+		$this->db->where('user_token', $token);
+		return $this->db->update('tb_user', $active);
+	}
 }
 
 /* End of file Login_m.php */
