@@ -90,12 +90,14 @@
     function getData()
     {
         <?php foreach ($sensors as $sensor) :?>
-        $.getJSON( "<?= base_url('get-temp/'.$sensor->thermo_hash) ?>", function( json ) {
-            graph("<?= $sensor->thermo_hash ?>", json);
-            $('.temp_<?= $sensor->thermo_hash ?>').html(json.temperature + '<br/> Temperature (°C)');
-            $('.hum_<?= $sensor->thermo_hash ?>').html(json.humidity + '<br/> Humidity (%)');
-            $('.dew_<?= $sensor->thermo_hash ?>').html(json.dew_point.toFixed(2) + '<br/> Dew Point (°C)');
-        });
+            var <?= $sensor->thermo_hash ?> = $.getJSON( "<?= base_url('get-temp/'.$sensor->thermo_hash) ?>", function( json ) {
+                graph("<?= $sensor->thermo_hash ?>", json);
+                $('.temp_<?= $sensor->thermo_hash ?>').html(json.temperature + '<br/> Temperature (°C)');
+                $('.hum_<?= $sensor->thermo_hash ?>').html(json.humidity + '<br/> Humidity (%)');
+                $('.dew_<?= $sensor->thermo_hash ?>').html(json.dew_point.toFixed(2) + '<br/> Dew Point (°C)');
+            });
+
+            setTimeout(function(){ '<?= $sensor->thermo_hash ?>'.abort(); }, 10000);
         <?php endforeach;?>
     }
 
@@ -124,7 +126,10 @@
         ],
         "autoWidth" : false,
         'dom': 'lrtip',
-        'ajax': "<?= base_url('get-logs');?>",
+        'ajax': {
+            url : "<?= base_url('get-logs');?>",
+            timeout: 10000
+        },
         "columns": [
             {
                 "data" : "datetime",

@@ -17,7 +17,10 @@
             }
         ],
         "autoWidth" : false,
-        'ajax': "<?= base_url('sensor-data/'.$sensor->thermo_hash);?>",
+        'ajax': {
+            url : "<?= base_url('sensor-data/'.$sensor->thermo_hash);?>",
+            timeout : 10000
+        },
         "columns": [
             {
                 "data" : "datetime",
@@ -159,7 +162,9 @@
 		});
 	}
 
-	getData();
+	var g = getData();
+    setTimeout(function(){ g.abort(); }, 10000);
+    
     setInterval(function(){
     	getData();
       	sensorData.ajax.reload();
