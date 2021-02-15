@@ -130,7 +130,7 @@ class Account_setting extends SIMONSTER_Core {
 				'file_name' => $filename, // New Image's Filename
 				'extension' => 'webp', // New Imaage's Extension. Default : webp
 				'quality' => '100%', // New Image's Quality. Default : 95%
-				'maintain_ratio' => TRUE, // Maintain image's dimension ratio. TRUE|FALSE
+				'maintain_ratio' => FALSE, // Maintain image's dimension ratio. TRUE|FALSE
 				'width' => 500, // New Image's width. Default : 800px
 				'height' => 500, // New Image's Height. Default : 600px
 				'cleared_path' => FCPATH . '_/images/users/'.$post['uid']
