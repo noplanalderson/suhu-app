@@ -1,4 +1,3 @@
-<!-- <script src="https://code.highcharts.com/3.0.9/modules/exporting.js"></script> -->
 <script>
 	var sensorData = $('#sensor-data').DataTable( {
         'processing' : true,
