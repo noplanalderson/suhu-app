@@ -46,7 +46,7 @@ class Sensor_m extends CI_Model {
 
 	public function editSensor($sensor, $hash)
 	{
-		$this->db->where('thermo_hash', $hash);
+		$this->db->where('menu_link', 'sensor/'.$hash);
 		$this->db->update('tb_menu', ['menu_label' => $sensor['thermo_location']]);
 		
 		$this->db->where('thermo_hash', $hash);
