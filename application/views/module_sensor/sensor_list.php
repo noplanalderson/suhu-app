@@ -9,7 +9,7 @@
 						</div>
 						<nav aria-label="breadcrumb" role="navigation">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="<?= base_url() ?>">Suhu</a></li>
+								<li class="breadcrumb-item"><a href="<?= base_url() ?>">SIMONSTER</a></li>
 								<li class="breadcrumb-item active">Sensor Management</li>
 							</ol>
 						</nav>
@@ -22,7 +22,7 @@
 						<h2 class="h4">Sensor List</h2>
 					</div>
                     <div class="col-md-2">
-						<?= button($btn_add, TRUE, 'a', 'href="#" class="btn btn-small add-sensor btn-primary" data-toggle="modal" data-target="#sensor"');?>
+						<?= button($btn_add, TRUE, 'a', 'href="#" class="btn btn-sm add-sensor btn-primary" data-toggle="modal" data-target="#sensor"');?>
 					</div>
 				</div>
 				<div id="delete_msg" class="alert" style="display:none;">
@@ -131,7 +131,7 @@
                     <button class="btn btn-secondary" type="reset" data-dismiss="modal">Reset</button>
                     <button id="submit" class="btn btn-success" type="submit" name="submit"></button>
                     </form>
-            </button>
+           		</div>
             </div>
         </div>
     </div>
