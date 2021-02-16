@@ -76,7 +76,7 @@ class User_management extends SIMONSTER_Core {
 			array(
 				'field' => 'user_name',
 				'label' => 'Username',
-				'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_]+$/]|min_length[3]|max_length[80]|is_unique[tb_user.user_name]',
+				'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_]+$/]|min_length[3]|max_length[80]',
 				'errors'=> array(
 					'required' => '{field} required.',
 					'regex_match' => 'Allowed characters for {field} are [a-zA-Z0-9_].',
@@ -97,7 +97,7 @@ class User_management extends SIMONSTER_Core {
 			array(
 				'field' => 'user_email',
 				'label' => 'Email',
-				'rules' => 'required|valid_email|max_length[100]|is_unique[tb_user.user_email]',
+				'rules' => 'required|valid_email|max_length[100]',
 				'errors'=> array(
 					'required' => '{field} required.',
 					'valid_email' => '{field} must a valid email address.',
@@ -111,15 +111,6 @@ class User_management extends SIMONSTER_Core {
 				'errors'=> array(
 					'required' => '{field} required.',
 					'integer' => '{field} must integer.'
-				)
-			),
-			array(
-				'field' => 'is_active',
-				'label' => 'User Status',
-				'rules' => 'required|regex_match[/^(Y|N)$/]',
-				'errors'=> array(
-					'required' => '{field} required.',
-					'regex_match' => '{field} option only Y or N.'
 				)
 			)
 		);
@@ -145,26 +136,34 @@ class User_management extends SIMONSTER_Core {
 				'user_picture' => 'default.png'
 			);
 
-			if($this->user_m->addUser($user) == true)
+			if($this->user_m->checkUserAvailability($user) == 0)
 			{
-				$from = $this->config->item('smtp_user');
-				$this->load->library('email');
-				
-				$this->email->from($from, 'SIMONSTER');
-				$this->email->to($user['user_email']);
-				
-				$this->email->subject('SIMONSTER - Account Activation');
-				$this->email->message("Click link below to activating your SIMONSTER APP user account\n\n" . base_url('activation/'.$user['user_token']));
-				
-				$this->email->send();
-				
-				$status = 1;
-				$msg = 'User Added.';
+				if($this->user_m->addUser($user) == true)
+				{
+					$from = $this->config->item('smtp_user');
+					$this->load->library('email');
+					
+					$this->email->from($from, 'SIMONSTER');
+					$this->email->to($user['user_email']);
+					
+					$this->email->subject('SIMONSTER - Account Activation');
+					$this->email->message("Your email was registered. You can log into application with your email after you set password and activating your account.\nClick this link below to activating your SIMONSTER APP user account\n\n" . base_url('activation/'.$user['user_token']));
+					
+					$this->email->send();
+					
+					$status = 1;
+					$msg = 'User Added.';
+				}
+				else
+				{
+					$status = 0;
+					$msg = 'Failed to Add User.';
+				}
 			}
 			else
 			{
 				$status = 0;
-				$msg = 'Failed to Add User.';
+				$msg = 'Username or Email was Registered';
 			}
 		}
 		else
@@ -178,66 +177,91 @@ class User_management extends SIMONSTER_Core {
 		echo json_encode($result);
 	}
 
-	// public function edit_recipient()
-	// {
-	// 	$post = $this->input->post(null, TRUE);
-	// 	$this->form_validation->set_rules($this->_emailRules());
+	public function edit_user()
+	{
+		$post = $this->input->post(null, TRUE);
+		$this->form_validation->set_rules($this->_userRules());
 		
-	// 	if ($this->form_validation->run() == TRUE) 
-	// 	{
-	// 		$recipient = array(
-	// 			'email_address' => $post['email_address']
-	// 		);
+		if ($this->form_validation->run() == TRUE) 
+		{
+			$user = array(
+				'user_name' => strtolower($post['user_name']),
+				'user_realname' => ucwords($post['user_realname']),
+				'user_email' => strtolower($post['user_email']),
+				'user_password' => '', 
+				'type_id' => $post['type_id'],
+				'user_token' => base64url_encode(hash_hmac('sha3-256', random_char(16,true), openssl_random_pseudo_bytes(16))),
+				'is_active' => 'N'
+			);
 
-	// 		if($this->recipient_m->editRecipient($recipient, $post['email_id']) == true)
-	// 		{
-	// 			$status = 1;
-	// 			$msg = 'Recipient Edited.';
-	// 		}
-	// 		else
-	// 		{
-	// 			$status = 0;
-	// 			$msg = 'Failed to Edit Recipient.';
-	// 		}
-	// 	}
-	// 	else
-	// 	{
-	// 		$status = 0;
-	// 		$msg = validation_errors();
-	// 	}
+			if($this->user_m->checkUserAvailability($user, $post['user_id']) == 0)
+			{
+				if($this->user_m->editUser($user, $post['user_id']) == true)
+				{
+					$from = $this->config->item('smtp_user');
+					$this->load->library('email');
+					
+					$this->email->from($from, 'SIMONSTER');
+					$this->email->to($user['user_email']);
+					
+					$this->email->subject('SIMONSTER - Account Modification');
+					$this->email->message("Your account was modified by user manager. You can log into application with your email after you reset password and re-activating your account.\nClick this link below to re-activating your SIMONSTER APP user account\n\n" . base_url('activation/'.$user['user_token']));
+					
+					$this->email->send();
+					
+					$status = 1;
+					$msg = 'User Edited.';
+				}
+				else
+				{
+					$status = 0;
+					$msg = 'Failed to Edit User.';
+				}
+			}
+			else
+			{
+				$status = 0;
+				$msg = 'Username or Email was Registered';
+			}
+		}
+		else
+		{
+			$status = 0;
+			$msg = validation_errors();
+		}
 		
-	// 	$token = $this->security->get_csrf_hash();
-	// 	$result = array('result' => $status, 'msg' => $msg, 'token' => $token);
-	// 	echo json_encode($result);
-	// }
+		$token = $this->security->get_csrf_hash();
+		$result = array('result' => $status, 'msg' => $msg, 'token' => $token);
+		echo json_encode($result);
+	}
 
-	// public function delete_user()
-	// {
-	// 	$post = $this->input->post(null, TRUE);
+	public function delete_user()
+	{
+		$post = $this->input->post(null, TRUE);
 		
-	// 	if( ! isset($post['id']))
-	// 	{
-	// 		$status = 0;
-	// 		$msg = 'Choose User to Delete';
-	// 	}
-	// 	else
-	// 	{
-	// 		if($this->recipient_m->deleteRecipient($post['id']))
-	// 		{
-	// 			$status = 1;
-	// 			$msg = 'User Deleted.';
-	// 		}
-	// 		else
-	// 		{
-	// 			$status = 0;
-	// 			$msg = 'Failed to Delete User.';
-	// 		}
-	// 	}
+		if( ! isset($post['id']))
+		{
+			$status = 0;
+			$msg = 'Choose User to Delete';
+		}
+		else
+		{
+			if($this->user_m->deleteUser($post['id']))
+			{
+				$status = 1;
+				$msg = 'User Deleted.';
+			}
+			else
+			{
+				$status = 0;
+				$msg = 'Failed to Delete User.';
+			}
+		}
 
-	// 	$token 	= $this->security->get_csrf_hash();
-	// 	$result = array('result' => $status, 'msg' => $msg, 'token' => $token);
-	// 	echo json_encode($result);
-	// }
+		$token 	= $this->security->get_csrf_hash();
+		$result = array('result' => $status, 'msg' => $msg, 'token' => $token);
+		echo json_encode($result);
+	}
 }
 
 /* End of file user_management.php */
