@@ -116,16 +116,6 @@
 							</select>
 						</div>
 					</div>
-
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Status</label>
-						<div class="col-sm-12 col-md-10">
-							<select name="is_active" id="is_active" class="form-control" required="required">
-								<option value="Y">Active</option>
-								<option value="N">Not Active</option>
-							</select>
-						</div>
-					</div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="reset" data-dismiss="modal">Reset</button>
