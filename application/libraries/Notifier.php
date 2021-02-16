@@ -45,7 +45,7 @@ class Notifier
 
 			    $this->_CI->email->to($address);
 			    $this->_CI->email->set_newline("\r\n");
-			    $this->_CI->email->from($from);
+			    $this->_CI->email->from($from, 'SIMONSTER');
 			    $this->_CI->email->subject('SIMONSTER ALERT');
 			    $this->_CI->email->message($this->msgLists());
 			    $this->_CI->email->set_mailtype('html');
