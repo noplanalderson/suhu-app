@@ -30,19 +30,19 @@
 								<div class="col-6">
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" id="ingat_aku" name="ingat_aku" style="margin-left:-2.2rem;" value="1">
-										<label class="text-white" for="ingat_aku">Ingat Saya</label>
+										<label class="text-white" for="ingat_aku">Remeber Me</label>
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="forgot-password">
-										<a class="text-white" href="forgot-password.html">Lupa Kata Sandi</a>
+										<a class="text-white" href="<?= base_url('forgot-password') ?>">Forgot Password</a>
 									</div>
 								</div>
 							</div>
 							<div class="row text-center">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-										<input id="submitLogin" name="submit" class="btn btn-primary btn-lg btn-block" type="submit" value="Masuk">
+										<input id="submitLogin" name="submit" class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
 									</div>
 								</div>
 								<div class="col-sm-12 mt-5">
