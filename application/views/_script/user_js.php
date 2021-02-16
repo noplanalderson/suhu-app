@@ -1,5 +1,5 @@
 <script>
-    $('#recipients').DataTable( {
+    $('#users').DataTable( {
         'info': false,
         'searchable':true,
         'responsive': true,
@@ -10,7 +10,7 @@
         "order": [[ 0, "asc" ]],
         'columnDefs': [ 
             {
-                'targets': [2,3,4],
+                'targets': [2,3,4,5],
                 'orderable': false,
             }
         ],
@@ -26,7 +26,6 @@
             $('#user_realname').val('');
             $('#user_email').val('');
             $('#type_id').val('');
-            $('#is_active').val('N').attr('disabled', 'disabled');
         });
         $('.edit-user').on('click', function() {
             $('.modal-title').html('Edit User');
@@ -34,6 +33,8 @@
             $('.modal-body form').attr('action', '<?= base_url("edit-user");?>');
 
             const user_id = $(this).data('id');
+            $('#user_id').val(user_id);
+
             $.ajax({
                 url: '<?= base_url("get-user");?>',
                 data: {
@@ -48,7 +49,6 @@
                     $('#user_realname').val(data.user_realname);
                     $('#user_email').val(data.user_email);
                     $('#type_id').val(data.type_id);
-                    $('#is_active').val(data.is_active).removeAttr('disabled');
                 }
             });
         });
@@ -62,7 +62,6 @@
             user_realname: $("#user_realname").val(),
             user_email: $("#user_email").val(),
             type_id: $("#type_id").val(),
-            is_active: $("#is_active").val(),
             <?= $this->security->get_csrf_token_name();?>: $('input[name="<?= $this->security->get_csrf_token_name();?>"]').attr('value')
         };
 
