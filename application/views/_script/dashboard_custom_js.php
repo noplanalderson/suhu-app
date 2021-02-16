@@ -87,25 +87,26 @@
         }).grow()
     }
 
-    function getData()
+    function getData(hash, thermo_url)
     {
-        <?php foreach ($sensors as $sensor) :?>
-            var <?= $sensor->thermo_hash ?> = $.getJSON( "<?= base_url('get-temp/'.$sensor->thermo_hash) ?>", function( json ) {
-                graph("<?= $sensor->thermo_hash ?>", json);
-                $('.temp_<?= $sensor->thermo_hash ?>').html(json.temperature + '<br/> Temperature (°C)');
-                $('.hum_<?= $sensor->thermo_hash ?>').html(json.humidity + '<br/> Humidity (%)');
-                $('.dew_<?= $sensor->thermo_hash ?>').html(json.dew_point.toFixed(2) + '<br/> Dew Point (°C)');
-            });
-
-            setTimeout(function(){ '<?= $sensor->thermo_hash ?>'.abort(); }, 10000);
-        <?php endforeach;?>
+        $.ajax({
+            url: thermo_url,
+            timeout: 10000,
+            type: 'GET',
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                graph(hash, data);
+                $('.temp_'+hash).html(data.temperature + '<br/> Temperature (°C)');
+                $('.hum_'+hash).html(data.humidity + '<br/> Humidity (%)');
+                $('.dew_'+hash).html(data.dew_point.toFixed(2) + '<br/> Dew Point (°C)');
+            }
+        });
     }
 
-    getData();
-    setInterval(function(){
-        getData()
-    }, <?= $this->app->fetch_data_time ?>);
-
+    <?php foreach ($sensors as $sensor) :?>
+        getData("<?= $sensor->thermo_hash ?>", "<?= base_url('get-real-temp/'.$sensor->thermo_hash) ?>");
+    <?php endforeach;?>
 
     var logs = $('#logs').DataTable( {
         'processing' : true,
@@ -142,7 +143,10 @@
         ]
     });
 
-    setInterval( function () {
-      logs.ajax.reload();
-    }, <?= $this->app->fetch_data_time ?> );
+    setInterval(function(){
+        <?php foreach ($sensors as $sensor) :?>
+            getData("<?= $sensor->thermo_hash ?>", "<?= base_url('get-temp/'.$sensor->thermo_hash) ?>");
+        <?php endforeach;?>
+        logs.ajax.reload();
+    }, <?= $this->app->fetch_data_time ?>);
 </script>

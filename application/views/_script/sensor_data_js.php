@@ -157,13 +157,19 @@
     }
 
     function getData() {
-	    $.getJSON("<?= base_url('sensor-data/graphData/'.$sensor->thermo_hash)?>", function (data) {
-	        graph(data);
-		});
-	}
+        $.ajax({
+            url: "<?= base_url('sensor-data/graphData/'.$sensor->thermo_hash)?>",
+            timeout: 10000,
+            type: 'GET',
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                graph(data);
+            }
+        });
+    };
 
-	var g = getData();
-    setTimeout(function(){ g.abort(); }, 10000);
+	getData();
     
     setInterval(function(){
     	getData();
