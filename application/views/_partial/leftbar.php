@@ -11,7 +11,7 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<li>
-					<div class="sidebar-small-cap">Menu Utama</div>
+					<div class="sidebar-small-cap">Main Menu</div>
 				</li>
 				<ul id="accordion-menu">
 					<?php 
@@ -45,7 +45,7 @@
 						<div class="dropdown-divider"></div>
 					</li>
 					<li>
-						<div class="sidebar-small-cap">Akun Anda</div>
+						<div class="sidebar-small-cap">Your Account</div>
 					</li>
 					<li>
 						<a href="<?= base_url('account-setting')?>" class="dropdown-toggle no-arrow">
