@@ -63,9 +63,9 @@ class Dashboard extends SIMONSTER_Core {
 
 	public function get_dummy()
 	{
-		$temp = mt_rand(0*10, 100*10) / 10;
+		$temp = mt_rand(0*10, 45*10) / 10;
 		$hum = mt_rand(0*10, 100*10) / 10;
-		$dew = mt_rand(0*10, 100*10) / 10;
+		$dew = mt_rand(0*10, 20*10) / 10;
 		echo json_encode(
 			[
 				'location' => 'Network Room', 
@@ -75,6 +75,28 @@ class Dashboard extends SIMONSTER_Core {
 				'dew_point' => $dew
 			]
 		);
+	}
+
+	public function get_real_temp($hash = NULL)
+	{
+		$sensor = $this->dashboard_m->getSensorUrl($hash);
+
+		if(empty($sensor)) redirect('page_error');
+
+		$ch = curl_init();
+	    curl_setopt($ch, CURLOPT_HEADER, false);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_URL, $sensor->thermo_url);
+	    $sensorData = curl_exec($ch);
+	    curl_close($ch);
+
+		$dataArray = json_decode($sensorData);
+
+	    return $this->output
+			        ->set_content_type('application/json')
+			        ->set_status_header(200)
+			        ->set_output($sensorData);
 	}
 
 	public function get_temp($hash = NULL)
@@ -141,10 +163,5 @@ class Dashboard extends SIMONSTER_Core {
 		$this->notifier->sendLogToEmail();
 
 	    $this->dashboard_m->insertTemp($dataArray, $hash);
-
-	    return $this->output
-			        ->set_content_type('application/json')
-			        ->set_status_header(200)
-			        ->set_output($sensorData);
 	}
 }
