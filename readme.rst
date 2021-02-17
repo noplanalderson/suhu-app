@@ -25,7 +25,7 @@ Server Requirements
 
 PHP version 7.3 or newer is recommended.
 
-This system require PHP 7.3 or newer, MariaDB, memcached, and PHP SSH2 Extension to run.
+This system require PHP 7.3 or newer, MariaDB, and Memcached.
 
 *********
 Resources
