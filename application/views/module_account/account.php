@@ -16,12 +16,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-box mb-30 pd-20">
-				<div class="row pd-20">
-                    <div class="col-md-12">
-						<h2 class="h4">Your Account</h2>
-					</div>
-				</div>
+			<div class="card-box mb-30 mt-30 pd-30">
 				<div id="account_msg" class="alert" style="display:none;">
                     <small class="account_msg"></small>
                 </div>

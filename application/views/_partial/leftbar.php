@@ -1,8 +1,8 @@
 	<div class="left-side-bar">
 		<div class="brand-logo ml-4">
 			<a href="<?= base_url('dashboard') ?>">
-				<?= show_image($this->app->app_logo_dark, 'image', 'alt="logo" class="dark-logo"')?>
-				<?= show_image($this->app->app_logo_light, 'image', 'alt="logo" class="light-logo"')?>
+				<?= show_image('sites/'.$this->app->app_logo_dark, 'image', 'alt="logo" class="dark-logo"')?>
+				<?= show_image('sites/'.$this->app->app_logo_light, 'image', 'alt="logo" class="light-logo"')?>
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>

@@ -7,7 +7,7 @@
 
 	<!-- App favicon -->
 
-	<?= show_image($this->app->app_icon, 'icon', 'rel="icon" type="image/png" sizes="16x16"') ?>
+	<?= show_image('sites/'.$this->app->app_icon, 'icon', 'rel="icon" type="image/png" sizes="16x16"') ?>
 	
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

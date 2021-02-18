@@ -5,7 +5,7 @@
 				<div class="col-md-12 col-lg-12">
 					<div class="login-box bg-dark box-shadow border-radius-10">
 						<div class="login-title text-center">
-							<?= show_image($this->app->app_logo_light, 'image', 'alt="Logo"')?>
+							<?= show_image('sites/'.$this->app->app_logo_light, 'image', 'alt="Logo"')?>
 							<div class="clearfix"></div>
 							<small class="text-white"><?= $this->app->app_title ?></small>
 							<hr/>
