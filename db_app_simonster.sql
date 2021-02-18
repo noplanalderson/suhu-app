@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 16, 2021 at 06:20 PM
+-- Generation Time: Feb 18, 2021 at 03:18 PM
 -- Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.14
 
@@ -45,7 +45,7 @@ CREATE TABLE `tb_app_setting` (
 --
 
 INSERT INTO `tb_app_setting` (`app_id`, `app_title`, `app_title_alt`, `fetch_data_time`, `footer_text`, `app_icon`, `app_logo_dark`, `app_logo_light`, `company_name`) VALUES
-(1, 'Sistem Monitoring Suhu Data Center', 'SIMONSTER', 60000, 'SIMONSTER - DISKOMINFO KOTA TANGERANG', 'sites/simonster-icon.png', 'sites/logo-simonster-dark.png', 'sites/logo-simonster-light.png', 'DINAS KOMUNIKASI DAN INFORMATIKA KOTA TANGERANG');
+(1, 'Sistem Monitoring Suhu Data Center', 'SIMONSTER', 120000, 'SIMONSTER - DISKOMINFO KOTA TANGERANG', 'app_icon/simonster-icon_PezWKXCz8oBwHy9LprsY7g_BOoCYvzs_6984_439082561_LauOSR_1613634369.webp', 'app_logo_dark/logo-simonster-dark_AlQs4ThOtYeh0ywFJJVBrg_MJoRwmcE_7946_460893215_TrwlbL_1613634369.webp', 'app_logo_light/logo-simonster-light_DRJnMoUxcU0AKp98NeYm1Q_sKFeDaYx_8462_508413269_6E5MUK_1613634369.webp', 'DINAS KOMUNIKASI DAN INFORMATIKA KOTA TANGERANG');
 
 -- --------------------------------------------------------
 
@@ -57,108 +57,6 @@ CREATE TABLE `tb_email_notifier` (
   `email_id` int(11) NOT NULL,
   `email_address` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_login_data`
---
-
-CREATE TABLE `tb_login_data` (
-  `data_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `cookie_value` varchar(255) DEFAULT NULL,
-  `cookie_expire` int(11) DEFAULT NULL,
-  `login_date` int(11) NOT NULL,
-  `last_ip` varbinary(16) NOT NULL,
-  `user_agent` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_login_data`
---
-
-INSERT INTO `tb_login_data` (`data_id`, `user_id`, `cookie_value`, `cookie_expire`, `login_date`, `last_ip`, `user_agent`) VALUES
-(1, 1, NULL, NULL, 1612288398, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(2, 1, NULL, NULL, 1612288453, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(3, 1, NULL, NULL, 1612288648, 0xc0a86414, 'Chrome 88.0.4324.104 Windows 10'),
-(4, 1, NULL, NULL, 1612289007, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(5, 1, NULL, NULL, 1612293325, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(6, 1, NULL, NULL, 1612293366, 0xc0a86414, 'Chrome 88.0.4324.104 Windows 10'),
-(7, 1, NULL, NULL, 1612340191, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(8, 1, NULL, NULL, 1612351405, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(9, 1, NULL, NULL, 1612376660, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(10, 1, NULL, NULL, 1612377038, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(11, 1, NULL, NULL, 1612425644, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(12, 1, NULL, NULL, 1612426091, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(13, 1, NULL, NULL, 1612430059, 0x7f000001, 'Chrome 88.0.4324.96 Linux'),
-(14, 1, NULL, NULL, 1612571196, 0x7f000001, 'Chrome 88.0.4324.146 Linux'),
-(15, 1, NULL, NULL, 1612576195, 0x7f000001, 'Chrome 88.0.4324.146 Linux'),
-(16, 1, NULL, NULL, 1612656247, 0x7f000001, 'Chrome 88.0.4324.146 Linux'),
-(17, 1, NULL, NULL, 1612658839, 0x7f000001, 'Chrome 88.0.4324.146 Linux'),
-(18, 1, NULL, NULL, 1612661252, 0x7f000001, 'Firefox 68.0 Linux'),
-(19, 1, NULL, NULL, 1612661952, 0x7f000001, 'Firefox 68.0 Linux'),
-(20, 1, NULL, NULL, 1612665482, 0x7f000001, 'Chrome 88.0.4324.152 Linux'),
-(21, 1, NULL, NULL, 1612782034, 0x7f000001, 'Firefox 85.0 Linux'),
-(22, 1, NULL, NULL, 1612953748, 0x7f000001, 'Chrome 88.0.4324.152 Linux'),
-(23, 1, NULL, NULL, 1612956181, 0x7f000001, 'Chrome 88.0.4324.152 Linux'),
-(24, 1, NULL, NULL, 1612965623, 0x7f000001, 'Firefox 85.0 Linux'),
-(25, 1, NULL, NULL, 1613042124, 0x7f000001, 'Firefox 85.0 Linux'),
-(26, 1, NULL, NULL, 1613051389, 0x7f000001, 'Firefox 85.0 Linux'),
-(27, 1, NULL, NULL, 1613051947, 0x7f000001, 'Firefox 85.0 Linux'),
-(28, 1, NULL, NULL, 1613093939, 0x7f000001, 'Firefox 85.0 Linux'),
-(29, 1, NULL, NULL, 1613094063, 0x7f000001, 'Firefox 85.0 Linux'),
-(30, 1, NULL, NULL, 1613098890, 0x7f000001, 'Firefox 85.0 Linux'),
-(31, 1, NULL, NULL, 1613099190, 0x7f000001, 'Firefox 85.0 Linux'),
-(32, 1, NULL, NULL, 1613199240, 0x7f000001, 'Firefox 85.0 Linux'),
-(33, 1, NULL, NULL, 1613209003, 0x7f000001, 'Firefox 85.0 Linux'),
-(34, 1, NULL, NULL, 1613216049, 0x7f000001, 'Firefox 85.0 Linux'),
-(35, 1, NULL, NULL, 1613244596, 0x7f000001, 'Firefox 85.0 Linux'),
-(36, 1, NULL, NULL, 1613252295, 0x7f000001, 'Firefox 85.0 Linux'),
-(37, 1, NULL, NULL, 1613256421, 0x7f000001, 'Firefox 85.0 Linux'),
-(38, 1, NULL, NULL, 1613256865, 0x7f000001, 'Firefox 85.0 Linux'),
-(39, 1, NULL, NULL, 1613282730, 0x7f000001, 'Firefox 85.0 Linux'),
-(40, 1, NULL, NULL, 1613282999, 0x7f000001, 'Firefox 85.0 Linux'),
-(41, 1, NULL, NULL, 1613283233, 0x7f000001, 'Firefox 85.0 Linux'),
-(42, 1, NULL, NULL, 1613284721, 0x7f000001, 'Firefox 85.0 Linux'),
-(43, 1, NULL, NULL, 1613285102, 0x7f000001, 'Firefox 85.0 Linux'),
-(44, 1, NULL, NULL, 1613285521, 0x7f000001, 'Firefox 85.0 Linux'),
-(45, 1, NULL, NULL, 1613286029, 0x7f000001, 'Firefox 85.0 Linux'),
-(46, 1, NULL, NULL, 1613286905, 0x7f000001, 'Firefox 85.0 Linux'),
-(47, 1, NULL, NULL, 1613287155, 0x7f000001, 'Firefox 85.0 Linux'),
-(48, 1, NULL, NULL, 1613287338, 0x7f000001, 'Firefox 85.0 Linux'),
-(49, 1, NULL, NULL, 1613287807, 0x7f000001, 'Firefox 85.0 Linux'),
-(50, 1, NULL, NULL, 1613288366, 0x7f000001, 'Firefox 85.0 Linux'),
-(51, 1, NULL, NULL, 1613296082, 0x7f000001, 'Firefox 85.0 Linux'),
-(52, 1, NULL, NULL, 1613297525, 0x7f000001, 'Firefox 85.0 Linux'),
-(53, 1, NULL, NULL, 1613301236, 0x7f000001, 'Firefox 85.0 Linux'),
-(54, 1, NULL, NULL, 1613304910, 0x7f000001, 'Firefox 85.0 Linux'),
-(55, 1, NULL, NULL, 1613305191, 0x7f000001, 'Firefox 85.0 Linux'),
-(56, 1, NULL, NULL, 1613341895, 0x7f000001, 'Firefox 85.0 Linux'),
-(57, 1, NULL, NULL, 1613345449, 0x7f000001, 'Firefox 85.0 Linux'),
-(58, 1, NULL, NULL, 1613345965, 0x7f000001, 'Firefox 85.0 Linux'),
-(59, 1, NULL, NULL, 1613346230, 0x7f000001, 'Firefox 85.0 Linux'),
-(60, 1, NULL, NULL, 1613347835, 0x7f000001, 'Firefox 85.0 Linux'),
-(61, 1, NULL, NULL, 1613347921, 0x7f000001, 'Firefox 85.0 Linux'),
-(63, 1, NULL, NULL, 1613383754, 0x7f000001, 'Firefox 85.0 Linux'),
-(64, 1, NULL, NULL, 1613400002, 0xc0a86429, 'Chrome 88.0.4324.152 Android'),
-(65, 1, NULL, NULL, 1613400011, 0xc0a86427, 'Chrome 88.0.4324.152 Windows 10'),
-(66, 1, NULL, NULL, 1613400227, 0xc0a86427, 'Chrome 88.0.4324.152 Windows 10'),
-(67, 1, NULL, NULL, 1613400271, 0xc0a86429, 'Chrome 88.0.4324.152 Android'),
-(68, 1, NULL, NULL, 1613401433, 0xc0a86429, 'Chrome 88.0.4324.152 Android'),
-(69, 1, NULL, NULL, 1613402341, 0x7f000001, 'Firefox 85.0 Linux'),
-(70, 1, NULL, NULL, 1613402499, 0x7f000001, 'Firefox 85.0 Linux'),
-(71, 1, NULL, NULL, 1613403255, 0x7f000001, 'Firefox 85.0 Linux'),
-(72, 1, NULL, NULL, 1613457208, 0x7f000001, 'Firefox 85.0 Linux'),
-(73, 1, NULL, NULL, 1613457228, 0x7f000001, 'Firefox 85.0 Linux'),
-(74, 1, NULL, NULL, 1613460223, 0x7f000001, 'Firefox 85.0 Linux'),
-(75, 1, NULL, NULL, 1613460256, 0x7f000001, 'Firefox 85.0 Linux'),
-(81, 1, NULL, NULL, 1613465067, 0x7f000001, 'Firefox 85.0 Linux'),
-(82, 1, NULL, NULL, 1613465214, 0x7f000001, 'Firefox 85.0 Linux'),
-(83, 4, NULL, NULL, 1613465416, 0x7f000001, 'Firefox 85.0 Linux'),
-(84, 4, NULL, NULL, 1613465456, 0x7f000001, 'Firefox 85.0 Linux'),
-(85, 1, NULL, NULL, 1613468645, 0x7f000001, 'Firefox 85.0 Linux'),
-(86, 4, NULL, NULL, 1613468748, 0x7f000001, 'Firefox 85.0 Linux');
 
 -- --------------------------------------------------------
 
@@ -620,7 +518,138 @@ INSERT INTO `tb_logs` (`log_id`, `timestamp`, `message`) VALUES
 (441, 1613469664, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at Network Room (99.6%)</p>'),
 (442, 1613469664, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Network Room (15.1°C)</p>'),
 (443, 1613469667, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.4°C)</p>'),
-(444, 1613473264, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (2°C)</p>');
+(444, 1613473264, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (2°C)</p>'),
+(445, 1613534469, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (11.7°C)</p>'),
+(446, 1613534471, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Server Room (62%)</p>'),
+(447, 1613534471, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.24°C)</p>'),
+(448, 1613538062, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (15.7°C)</p>'),
+(449, 1613541663, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (5.9°C)</p>'),
+(450, 1613541663, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Network Room (15.6°C)</p>'),
+(451, 1613548865, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at  (°C)</p>'),
+(452, 1613548865, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (9.7°C)</p>'),
+(453, 1613548866, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (9.8°C)</p>'),
+(454, 1613548866, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at  (%)</p>'),
+(455, 1613548866, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at  (0°C)</p>'),
+(456, 1613552463, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at  (°C)</p>'),
+(457, 1613552463, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (30.3°C)</p>'),
+(458, 1613552463, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at  (%)</p>'),
+(459, 1613552463, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (6.5°C)</p>'),
+(460, 1613552463, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at  (0°C)</p>'),
+(461, 1613556063, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at  (°C)</p>'),
+(462, 1613556063, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (8.8°C)</p>'),
+(463, 1613556063, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at  (%)</p>'),
+(464, 1613556063, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at  (0°C)</p>'),
+(465, 1613559663, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (14.3°C)</p>'),
+(466, 1613566863, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Network Room (31.5%)</p>'),
+(467, 1613566863, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (6.7°C)</p>'),
+(468, 1613566994, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at  (°C)</p>'),
+(469, 1613566994, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at  (%)</p>'),
+(470, 1613566994, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at  (0°C)</p>'),
+(471, 1613574064, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (30.1°C)</p>'),
+(472, 1613574064, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Network Room (31.5%)</p>'),
+(473, 1613574064, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (2.1°C)</p>'),
+(474, 1613574067, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (27.2°C)</p>'),
+(475, 1613574067, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.7°C)</p>'),
+(476, 1613628066, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (12°C)</p>'),
+(477, 1613628067, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (8.9°C)</p>'),
+(478, 1613628069, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (27.5°C)</p>'),
+(479, 1613631664, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (8.3°C)</p>'),
+(480, 1613631664, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Network Room (64.4%)</p>'),
+(481, 1613631667, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (27.4°C)</p>'),
+(482, 1613634033, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(483, 1613634033, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (29°C)</p>'),
+(484, 1613634033, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Network Room (4.8°C)</p>'),
+(485, 1613634038, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(486, 1613634038, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (30.4°C)</p>'),
+(487, 1613634042, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(488, 1613634042, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at Network Room (8.1%)</p>'),
+(489, 1613634042, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (3.9°C)</p>'),
+(490, 1613634046, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(491, 1613634046, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (0.1°C)</p>'),
+(492, 1613634050, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(493, 1613634050, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Network Room (63.5%)</p>'),
+(494, 1613634050, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (0.4°C)</p>'),
+(495, 1613634053, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(496, 1613634054, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (0.6°C)</p>'),
+(497, 1613634057, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(498, 1613634060, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(499, 1613634061, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (2°C)</p>'),
+(500, 1613634064, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(501, 1613634064, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (8.5°C)</p>'),
+(502, 1613634394, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(503, 1613634398, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(504, 1613634398, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (31.9°C)</p>'),
+(505, 1613634398, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (6.1°C)</p>'),
+(506, 1613634403, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(507, 1613634403, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Network Room (5.4°C)</p>'),
+(508, 1613634409, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(509, 1613634409, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (6.5°C)</p>'),
+(510, 1613634409, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Network Room (4.1°C)</p>'),
+(511, 1613634413, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(512, 1613634413, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.14°C)</p>'),
+(513, 1613634413, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (7.3°C)</p>'),
+(514, 1613634417, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>');
+INSERT INTO `tb_logs` (`log_id`, `timestamp`, `message`) VALUES
+(515, 1613634417, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.22°C)</p>'),
+(516, 1613634417, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (29.7°C)</p>'),
+(517, 1613634417, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (5.8°C)</p>'),
+(518, 1613634421, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(519, 1613634421, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.41°C)</p>'),
+(520, 1613634421, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (3.7°C)</p>'),
+(521, 1613634421, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (0.2°C)</p>'),
+(522, 1613634425, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(523, 1613634425, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.45°C)</p>'),
+(524, 1613634425, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (5.1°C)</p>'),
+(525, 1613634430, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(526, 1613634430, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.64°C)</p>'),
+(527, 1613634430, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Network Room (5.4°C)</p>'),
+(528, 1613634435, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(529, 1613634435, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.78°C)</p>'),
+(530, 1613634435, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at Network Room (97.3%)</p>'),
+(531, 1613634439, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(532, 1613634439, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (15.94°C)</p>'),
+(533, 1613634439, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (15.1°C)</p>'),
+(534, 1613634439, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Network Room (4.8°C)</p>'),
+(535, 1613634445, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(536, 1613634445, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (16.07°C)</p>'),
+(537, 1613634445, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Network Room (63.9%)</p>'),
+(538, 1613634450, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(539, 1613634450, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (16.05°C)</p>'),
+(540, 1613634450, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (2.3°C)</p>'),
+(541, 1613634455, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28.1°C)</p>'),
+(542, 1613634455, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (16.24°C)</p>'),
+(543, 1613634455, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (32.7°C)</p>'),
+(544, 1613634455, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (9.9°C)</p>'),
+(545, 1613634459, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(546, 1613634460, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (16.24°C)</p>'),
+(547, 1613634460, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (16.2°C)</p>'),
+(548, 1613634460, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at Network Room (97.8%)</p>'),
+(549, 1613634465, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(550, 1613634465, '<p class=\'text-warning\'><b>[WARNING]</b> Dew Point at Server Room (16.37°C)</p>'),
+(551, 1613634465, '<p class=\'text-danger\'><b>[CRITICAL]</b> Humidity at Network Room (1%)</p>'),
+(552, 1613634469, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(553, 1613634469, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (9°C)</p>'),
+(554, 1613634474, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(555, 1613634478, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(556, 1613634478, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (3.3°C)</p>'),
+(557, 1613634478, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (1.1°C)</p>'),
+(558, 1613634483, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(559, 1613634483, '<p class=\'text-danger\'><b>[CRITICAL]</b> Temperature at Network Room (0.7°C)</p>'),
+(560, 1613634483, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (0.1°C)</p>'),
+(561, 1613634488, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(562, 1613634489, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Network Room (61.8%)</p>'),
+(563, 1613634489, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (8.4°C)</p>'),
+(564, 1613634494, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(565, 1613634494, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (9.3°C)</p>'),
+(566, 1613634499, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(567, 1613634499, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (12.7°C)</p>'),
+(568, 1613634499, '<p class=\'text-warning\'><b>[WARNING]</b> Humidity at Network Room (33.5%)</p>'),
+(569, 1613634503, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(570, 1613634503, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Network Room (27.6°C)</p>'),
+(571, 1613634503, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (9.9°C)</p>'),
+(572, 1613635267, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (28°C)</p>'),
+(573, 1613635277, '<p class=\'text-warning\'><b>[WARNING]</b> Temperature at Server Room (27.9°C)</p>'),
+(574, 1613635278, '<p class=\'text-danger\'><b>[CRITICAL]</b> Dew Point at Network Room (1.8°C)</p>');
 
 -- --------------------------------------------------------
 
@@ -1171,7 +1200,95 @@ INSERT INTO `tb_room_temp` (`temp_id`, `thermo_hash`, `timestamp`, `temperature`
 (444, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613469664, '19.9', '99.6', '15.1'),
 (445, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613469667, '24.0', '58.6', '15.4'),
 (446, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613473264, '36.6', '40.9', '2.0'),
-(447, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613473269, '23.1', '55.9', '13.8');
+(447, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613473269, '23.1', '55.9', '13.8'),
+(448, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613534469, '11.7', '27.1', '18.8'),
+(449, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613534471, '22.9', '62.0', '15.2'),
+(450, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613538063, '15.7', '42.5', '19.2'),
+(451, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613538066, '23.8', '54.7', '14.1'),
+(452, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613541663, '5.9', '72.1', '15.6'),
+(453, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613541666, '23.7', '57.0', '14.7'),
+(454, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613548866, '9.7', '59.0', '9.8'),
+(455, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613552463, '30.3', '71.1', '6.5'),
+(456, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613556063, '36.3', '29.7', '8.8'),
+(457, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613559663, '14.3', '83.0', '19.9'),
+(458, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613559666, '25.2', '52.2', '14.7'),
+(459, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613566863, '19.8', '31.5', '6.7'),
+(460, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613574064, '30.1', '31.5', '2.1'),
+(461, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613574067, '27.2', '49.4', '15.7'),
+(462, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613628068, '12.0', '10.5', '8.9'),
+(463, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613628069, '27.5', '44.9', '14.5'),
+(464, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613631664, '8.3', '64.4', '10.3'),
+(465, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613631667, '27.4', '43.8', '14.0'),
+(466, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634033, '28.0', '50.9', '16.9'),
+(467, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634033, '29.0', '53.6', '4.8'),
+(468, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634038, '28.0', '50.8', '16.9'),
+(469, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634038, '30.4', '18.7', '18.3'),
+(470, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634042, '28.0', '50.8', '16.9'),
+(471, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634042, '10.2', '8.1', '3.9'),
+(472, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634046, '28.0', '50.8', '16.9'),
+(473, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634046, '0.1', '22.7', '13.5'),
+(474, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634050, '28.0', '50.7', '16.8'),
+(475, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634050, '24.5', '63.5', '0.4'),
+(476, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634054, '28.0', '50.6', '16.8'),
+(477, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634054, '0.6', '47.6', '13.0'),
+(478, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634057, '28.0', '50.4', '16.7'),
+(479, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634057, '41.3', '12.3', '10.2'),
+(480, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634060, '28.0', '50.3', '16.7'),
+(481, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634061, '19.6', '80.7', '2.0'),
+(482, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634064, '28.0', '50.3', '16.7'),
+(483, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634064, '8.5', '73.4', '13.8'),
+(484, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634394, '28.0', '44.1', '14.7'),
+(485, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634394, '22.5', '28.1', '17.7'),
+(486, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634398, '28.1', '44.2', '14.8'),
+(487, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634398, '31.9', '50.5', '6.1'),
+(488, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634403, '28.0', '44.3', '14.7'),
+(489, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634403, '23.3', '79.1', '5.4'),
+(490, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634409, '28.0', '44.7', '14.9'),
+(491, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634410, '6.5', '88.0', '4.1'),
+(492, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634413, '28.1', '45.2', '15.1'),
+(493, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634413, '7.3', '81.7', '14.2'),
+(494, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634417, '28.0', '45.7', '15.2'),
+(495, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634417, '29.7', '47.9', '5.8'),
+(496, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634421, '28.1', '46.0', '15.4'),
+(497, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634421, '3.7', '84.7', '0.2'),
+(498, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634425, '28.0', '46.4', '15.5'),
+(499, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634425, '5.1', '42.4', '18.6'),
+(500, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634430, '28.1', '46.7', '15.6'),
+(501, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634430, '40.5', '76.9', '5.4'),
+(502, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634435, '28.1', '47.1', '15.8'),
+(503, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634435, '44.6', '97.3', '12.7'),
+(504, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634439, '28.1', '47.6', '15.9'),
+(505, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634439, '15.1', '14.0', '4.8'),
+(506, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634445, '28.1', '48.0', '16.1'),
+(507, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634445, '40.9', '63.9', '12.6'),
+(508, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634450, '28.0', '48.2', '16.0'),
+(509, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634450, '24.0', '79.7', '2.3'),
+(510, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634455, '28.1', '48.5', '16.2'),
+(511, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634455, '32.7', '70.6', '9.9'),
+(512, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634460, '28.0', '48.8', '16.2'),
+(513, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634460, '16.2', '97.8', '13.8'),
+(514, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634465, '28.0', '49.2', '16.4'),
+(515, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634465, '38.1', '1.0', '13.0'),
+(516, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634469, '28.0', '49.7', '16.5'),
+(517, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634469, '44.7', '19.2', '9.0'),
+(518, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634474, '28.0', '49.9', '16.6'),
+(519, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634474, '23.0', '40.6', '18.3'),
+(520, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634478, '28.0', '50.2', '16.7'),
+(521, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634479, '3.3', '60.1', '1.1'),
+(522, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634483, '28.0', '50.4', '16.7'),
+(523, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634484, '0.7', '25.0', '0.1'),
+(524, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634488, '28.0', '50.7', '16.8'),
+(525, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634489, '34.8', '61.8', '8.4'),
+(526, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634494, '28.0', '51.0', '16.9'),
+(527, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634494, '37.6', '70.2', '9.3'),
+(528, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634499, '28.0', '51.4', '17.1'),
+(529, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634499, '12.7', '33.5', '19.3'),
+(530, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613634503, '28.0', '51.8', '17.2'),
+(531, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613634503, '27.6', '73.2', '9.9'),
+(532, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613635263, '44.9', '55.2', '12.5'),
+(533, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613635267, '28.0', '50.1', '16.7'),
+(534, 'MDRmODNlMzQxODlkMWZhYTk1NWU4MjcwODYzNWYzNzQzYzlhYTBmOTU0ZDk5ZTVkN2RjZjkzMTRlNGUyNDk4Yg', 1613635277, '27.9', '51.7', '17.1'),
+(535, 'MDg0MmUzZTAwYzM3ZjhjMGJlYTA0ZjM5MGUyMjVkODcwMGFmZDIzN2E3MGVhODMxMWUwZmI3MjQxOGQ2N2ViMg', 1613635278, '43.7', '29.7', '1.8');
 
 -- --------------------------------------------------------
 
@@ -1220,7 +1337,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`user_id`, `type_id`, `user_name`, `user_password`, `user_realname`, `user_email`, `user_picture`, `user_token`, `is_active`) VALUES
-(1, 2, 'ridwannaim', '$argon2id$v=19$m=2048,t=4,p=3$VmVHQmZyWUs0a0oyNVRpUg$VVxutFvhiAFe6LMq///6tS7UmMXRFvTP96LpXwCLPSs', 'Muhammad Ridwan Naim', 'muhammadridwannaim@gmail.com', 'MTU1MzhiZmItZjhhNS1iMjhmYzVkMC03YzA3LTcwNTVlY2Vk/9a050822173e30d27980ec44dd12e719_GxYeBht2tx33eL6v5Q13w_lWeMiuNI_2678_021495876_boLA9u_1613402488.webp', NULL, 'Y'),
+(1, 2, 'ridwannaim', '$argon2id$v=19$m=2048,t=4,p=3$cTNmRUFHWlcvMkp5c240bw$Ry0cZ3thRnm05XZc/rkZf1or8DrdWQvnaNvZFN7zBtQ', 'Muhammad Ridwan Naim', 'muhammadridwannaim@gmail.com', 'MTU1MzhiZmItZjhhNS1iMjhmYzVkMC03YzA3LTcwNTVlY2Vk/9a050822173e30d27980ec44dd12e719_GxYeBht2tx33eL6v5Q13w_lWeMiuNI_2678_021495876_boLA9u_1613402488.webp', NULL, 'Y'),
 (4, 1, 'noplanalderson', '$argon2id$v=19$m=2048,t=4,p=3$eEJxVGI1WXFCcG5UUjc0WA$fTaGKvT1Em+2whGUi9H6RwqWzwahzT6FbH7lmMnAHq8', 'Noplan Alderson', 'mrneem@protonmail.com', 'default.png', NULL, 'Y');
 
 -- --------------------------------------------------------
@@ -1257,13 +1374,6 @@ ALTER TABLE `tb_app_setting`
 --
 ALTER TABLE `tb_email_notifier`
   ADD PRIMARY KEY (`email_id`);
-
---
--- Indexes for table `tb_login_data`
---
-ALTER TABLE `tb_login_data`
-  ADD PRIMARY KEY (`data_id`),
-  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `tb_logs`
@@ -1323,16 +1433,10 @@ ALTER TABLE `tb_email_notifier`
   MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tb_login_data`
---
-ALTER TABLE `tb_login_data`
-  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
-
---
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=445;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
 
 --
 -- AUTO_INCREMENT for table `tb_menu`
@@ -1350,7 +1454,7 @@ ALTER TABLE `tb_roles`
 -- AUTO_INCREMENT for table `tb_room_temp`
 --
 ALTER TABLE `tb_room_temp`
-  MODIFY `temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=448;
+  MODIFY `temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=536;
 
 --
 -- AUTO_INCREMENT for table `tb_thermometer`
@@ -1373,12 +1477,6 @@ ALTER TABLE `tb_user_type`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `tb_login_data`
---
-ALTER TABLE `tb_login_data`
-  ADD CONSTRAINT `tb_login_data_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tb_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_roles`
