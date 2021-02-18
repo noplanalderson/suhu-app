@@ -151,8 +151,6 @@ class Account_setting extends SIMONSTER_Core {
 			}
 			else
 			{
-				$status = 0;
-				$msg = $this->secure_upload->show_errors();
 				$user_picture = $post['old_picture'];
 			}
 
