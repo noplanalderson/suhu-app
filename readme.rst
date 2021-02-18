@@ -10,14 +10,13 @@ Release Information
 
 This repo contains in-development code for future releases. To download the
 latest stable release please visit the `Downloads
-<https://codeigniter.com/download>`_ page.
+<https://github.com/noplanalderson/suhu-app>`_ page.
 
 **************************
 Changelog and New Features
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+No change log at this time.
 
 *******************
 Server Requirements
@@ -42,3 +41,9 @@ SIMONSTER Development Team
 -  `Muhammad Ridwan Na'im`
 
 -  `Iqbal Tamam`
+
+SIMONSTER Account Testing
+
+-  `userman:@Userman123 (For User Manager)`
+
+-  `employee:@Employee123 (For Employee)`
