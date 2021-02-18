@@ -97,57 +97,16 @@ class Access_control
 
 	public function check_login()
 	{
-		if(empty($this->uid) && empty($this->gid) && empty(get_cookie('ingat_aku'))) 
+		if(empty($this->uid) && empty($this->gid))
 		{
 			redirect($this->login_page);
-		}
-		elseif(!empty(get_cookie('ingat_aku')))
-		{
-			$user = $this->_CI->login_m->check_cookie();
-
-			if(empty($user)) redirect('kesalahan/405');
-
-			if(empty($this->uid) && empty($this->gid))
-			{
-				$now = new DateTime();
-				$now->setTimezone(new DateTimeZone('Asia/Jakarta'));
-
-				$sessionLogin = array(  
-					'uid' 	=> $user->user_id,
-					'gid' 	=> $user->type_id,
-					'time'	=> strtotime($now->format('Y-m-d H:i:s')),
-				);
-
-				$this->_CI->session->set_userdata($sessionLogin);
-			}
 		}
 	}
 
 	public function is_login()
 	{
-		if(!empty($this->uid) && !empty($this->gid) && empty(get_cookie('ingat_aku'))) 
+		if(!empty($this->uid) && !empty($this->gid)) 
 		{
-			redirect($this->default_page);
-		}
-		elseif(!empty(get_cookie('ingat_aku')))
-		{
-			$user = $this->_CI->login_m->check_cookie();
-
-			if(empty($user)) redirect('kesalahan/405');
-
-			if(empty($this->uid) && empty($this->gid))
-			{
-				$now = new DateTime();
-				$now->setTimezone(new DateTimeZone('Asia/Jakarta'));
-
-				$sessionLogin = array(  
-					'uid' 	=> $user->user_id,
-					'gid' 	=> $user->type_id,
-					'time'	=> strtotime($now->format('Y-m-d H:i:s')),
-				);
-
-				$this->_CI->session->set_userdata($sessionLogin);
-			}
 			redirect($this->default_page);
 		}
 	}

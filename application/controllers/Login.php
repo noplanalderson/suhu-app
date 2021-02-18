@@ -174,19 +174,6 @@ class Login extends SIMONSTER_Core {
 
 					$this->session->set_userdata($sessionLogin);
 
-					$kue_aku = NULL;
-					$expire = NULL;
-					
-					if($post['ingat_aku'] !== '') 
-					{
-						$kue_aku 	= base64url_encode(openssl_random_pseudo_bytes(64));
-						$expire 	= $this->session->userdata('time') + (3600*24*30);
-
-						set_cookie('ingat_aku', $kue_aku, 3600*24*30);
-					}
-					
-					$this->login_m->insert_login_data($kue_aku, $expire);
-
 					$status = 1;
 					$msg = 'Login Success. Please wait... ';
 

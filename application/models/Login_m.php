@@ -28,26 +28,6 @@ class Login_m extends CI_Model {
 		);
 	}
 
-	public function check_cookie()
-	{
-		$this->db->select('a.user_id, b.type_id');
-		$this->db->join('tb_user b', 'a.user_id = b.user_id', 'inner');
-		$this->db->where('a.cookie_value', get_cookie('ingat_aku'));
-		$this->db->where('a.cookie_expire > ', strtotime(date('Ymdhis')));
-		$this->db->where('user_agent', ua());
-		$this->db->where('last_ip', inet_pton(get_real_ip()));
-		return $this->db->get('tb_login_data a')->row();
-	}
-
-	public function delete_cookie()
-	{
-		$this->db->where('cookie_value', get_cookie('ingat_aku'));
-		$this->db->where('user_id', $this->session->userdata('uid'));
-		$this->db->where('last_ip', inet_pton(get_real_ip()));
-		$this->db->where('user_agent', ua());
-		$this->db->update('tb_login_data', ['cookie_value' => NULL, 'cookie_expire' => NULL]);
-	}
-
 	public function getUserByToken($token)
 	{
 		$this->db->where('user_token', $token);

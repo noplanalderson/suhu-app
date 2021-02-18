@@ -5,7 +5,7 @@
 				<div class="col-md-12 col-lg-12">
 					<div class="login-box bg-dark box-shadow border-radius-10">
 						<div class="login-title text-center">
-							<?= show_image($this->app->app_logo_light, 'image', 'alt="Logo"')?>
+							<?= show_image('sites/'.$this->app->app_logo_light, 'image', 'alt="Logo"')?>
 							<div class="clearfix"></div>
 							<small class="text-white"><?= $this->app->app_title ?></small>
 						</div>
@@ -26,23 +26,15 @@
 									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
 								</div>
 							</div>
-							<div class="row pb-30">
-								<div class="col-6">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" id="ingat_aku" name="ingat_aku" style="margin-left:-2.2rem;" value="1">
-										<label class="text-white" for="ingat_aku">Remeber Me</label>
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="forgot-password">
-										<a class="text-white" href="<?= base_url('forgot-password') ?>">Forgot Password</a>
-									</div>
-								</div>
-							</div>
 							<div class="row text-center">
-								<div class="col-sm-12">
+								<div class="col-sm-6">
 									<div class="input-group mb-0">
-										<input id="submitLogin" name="submit" class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
+										<a href="<?= base_url('forgot-password') ?>" class="btn btn-secondary btn-md btn-block">Forgot Password</a>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="input-group mb-0">
+										<input id="submitLogin" name="submit" class="btn btn-primary btn-md btn-block" type="submit" value="Login">
 									</div>
 								</div>
 								<div class="col-sm-12 mt-5">

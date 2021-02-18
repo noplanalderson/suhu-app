@@ -7,7 +7,6 @@
         	submit: $("#submitLogin").attr('name'),
             user_name: $("#user_name").val(),
             user_password: $("#user_password").val(),
-            ingat_aku: $("#ingat_aku").serialize(),
             <?= $this->security->get_csrf_token_name();?>: $('input[name="<?= $this->security->get_csrf_token_name();?>"]').attr('value')
         };
 
