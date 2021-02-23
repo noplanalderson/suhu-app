@@ -7,6 +7,16 @@ class Dashboard extends SIMONSTER_Core {
 	{
 		parent::__construct();
 
+		$this->_partial = array(
+			'head',
+			'loader',
+			'header',
+			'rightbar',
+			'leftbar',
+			'body',
+			'script'
+		);
+		
 		$this->js = array(
 			'script.min',
 			'process',
@@ -17,7 +27,8 @@ class Dashboard extends SIMONSTER_Core {
 			'datatables/css/dataTables.bootstrap4.min',
 			'datatables/css/responsive.bootstrap4.min',
 			'flag-icon/css/flag-icon.min',
-			'RGraph/demos/demos'
+			'RGraph/demos/demos',
+			'daterangepicker/daterangepicker'
 		);
 
 		$this->js_plugin = array(
@@ -28,7 +39,9 @@ class Dashboard extends SIMONSTER_Core {
 			'RGraph/libraries/RGraph.common.core',
 			'RGraph/libraries/RGraph.common.dynamic',
 			'RGraph/libraries/RGraph.meter',
-			'RGraph/demos/demos'
+			'RGraph/demos/demos',
+			'daterangepicker/moment.min',
+			'daterangepicker/daterangepicker'
 		);
 
 		$this->load->library('user_agent');
@@ -50,11 +63,20 @@ class Dashboard extends SIMONSTER_Core {
 		$this->load_view();
 	}
 
-	public function getLogs()
+	public function getLogs($start = NULL, $end = NULL)
 	{
 		$this->access_control->check_login();
 		
-		$data = json_encode($this->dashboard_m->getLogs(), JSON_PRETTY_PRINT);
+		if(!empty($start) || !empty($end))
+		{
+			if(validate_date($start) == false && validate_date($end) == false)
+			{
+				$start = NULL;
+				$end = NULL;
+			}
+		}
+
+		$data = json_encode($this->dashboard_m->getLogs($start, $end), JSON_PRETTY_PRINT);
 
 		$this->output->set_status_header(200)
 					 ->set_content_type('application/json')

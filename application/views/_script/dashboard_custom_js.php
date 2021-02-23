@@ -1,5 +1,13 @@
 <script>
+    var realTimeTemp = "<?= base_url('get-real-temp') ?>";
+    var logsUrl = "<?= base_url('get-logs') ?>";
 
+    $('input[name="time_range"]').daterangepicker({
+        "locale": {
+            "format": "YYYY-MM-DD",
+        }
+    });
+    
     function graph(hash, data)
     {
         new RGraph.Meter({
@@ -105,7 +113,7 @@
     }
 
     <?php foreach ($sensors as $sensor) :?>
-        getData("<?= $sensor->thermo_hash ?>", "<?= base_url('get-real-temp/'.$sensor->thermo_hash) ?>");
+        getData("<?= $sensor->thermo_hash ?>", realTimeTemp + "/<?= $sensor->thermo_hash ?>");
     <?php endforeach;?>
 
     var logs = $('#logs').DataTable( {
@@ -128,7 +136,7 @@
         "autoWidth" : false,
         'dom': 'lrtip',
         'ajax': {
-            url : "<?= base_url('get-logs');?>",
+            url : "<?= base_url('get-logs') ?>",
             timeout: 10000
         },
         "columns": [
@@ -145,8 +153,25 @@
 
     setInterval(function(){
         <?php foreach ($sensors as $sensor) :?>
-            getData("<?= $sensor->thermo_hash ?>", "<?= base_url('get-temp/'.$sensor->thermo_hash) ?>");
+            getData("<?= $sensor->thermo_hash ?>", realTimeTemp + "/<?= $sensor->thermo_hash ?>");
         <?php endforeach;?>
         logs.ajax.reload();
     }, <?= $this->app->fetch_data_time ?>);
+
+    $("#submit_range").click(function() {
+        var formAction = $("#range_form").attr('action');
+        var time_range = $("#time_range").val();
+        var range = time_range.split(' - ');
+        var logs_url = logsUrl + '/' + range[0] + "/" + range[1];
+        $.ajax({
+            type: "GET",
+            url: logs_url,
+            dataType: 'json',
+            success: function(data) {
+                $("#logs").DataTable().clear().draw();
+                $("#logs").DataTable().ajax.url(logs_url).load();
+            }
+        });
+        return false;
+    });
 </script>

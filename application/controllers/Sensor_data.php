@@ -20,6 +20,7 @@ class Sensor_data extends SIMONSTER_Core {
 			'datatables/css/responsive.bootstrap4.min',
 			'datatables/css/dataTables.buttons.min',
 			'flag-icon/css/flag-icon.min',
+			'daterangepicker/daterangepicker'
 		);
 
 		$this->js_plugin = array(
@@ -37,7 +38,8 @@ class Sensor_data extends SIMONSTER_Core {
 			'highcharts/code/modules/exporting',
 			'highcharts/code/modules/offline-exporting',
 			'momentjs/moment.min',
-			'momentjs/moment-timezone.min'
+			'momentjs/moment-timezone.min',
+			'daterangepicker/daterangepicker'
 		);
 
 		$this->load->model('sensor_data_m');
@@ -60,18 +62,36 @@ class Sensor_data extends SIMONSTER_Core {
 		$this->load_view();
 	}
 
-	public function getData($hash)
+	public function getData($hash, $start = NULL, $end = NULL)
 	{	
-		$data = json_encode($this->sensor_data_m->getSensorData($hash), JSON_PRETTY_PRINT);
+		if(!empty($start) || !empty($end))
+		{
+			if(validate_date($start) == false && validate_date($end) == false)
+			{
+				$start = NULL;
+				$end = NULL;
+			}
+		}
+
+		$data = json_encode($this->sensor_data_m->getSensorData($hash, $start, $end), JSON_PRETTY_PRINT);
 
 		$this->output->set_status_header(200)
 					 ->set_content_type('application/json')
 					 ->set_output($data);
 	}
 
-	public function graphData($hash)
+	public function graphData($hash, $start = NULL, $end = NULL)
 	{	
-		$data = json_encode($this->sensor_data_m->getGraphData($hash), JSON_PRETTY_PRINT);
+		if(!empty($start) || !empty($end))
+		{
+			if(validate_date($start) == false && validate_date($end) == false)
+			{
+				$start = NULL;
+				$end = NULL;
+			}
+		}
+
+		$data = json_encode($this->sensor_data_m->getGraphData($hash, $start, $end), JSON_PRETTY_PRINT);
 
 		$this->output->set_status_header(200)
 					 ->set_content_type('application/json')

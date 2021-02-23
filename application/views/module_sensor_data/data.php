@@ -3,7 +3,7 @@
 		<div class="xs-pd-20-10 pd-ltr-20">
 			<div class="page-header">
 				<div class="row">
-					<div class="col-md-12 col-sm-12">
+					<div class="col-md-5 col-sm-12">
 						<div class="title">
 							<h4>Sensor Data</h4>
 						</div>
@@ -13,6 +13,15 @@
 								<li class="breadcrumb-item active"><?= $sensor->thermo_location ?></li>
 							</ol>
 						</nav>
+					</div>
+					<div class="col-md-1 col-sm-4">Range</div>
+					<div class="col-md-4 col-sm-4">
+						<?= form_open('logs-range', 'id="range_form"');?>
+						<input type="text" id="time_range" name="time_range" class="form-control pull-right">
+					</div>
+					<div class="col-md-2 col-sm-4">
+						<button type="submit" name="submit_range" id="submit_range" class="btn btn-md btn-primary">Submit</button>
+						</form>
 					</div>
 				</div>
 			</div>

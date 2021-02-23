@@ -41,7 +41,20 @@
 			</div>
 			<?php endforeach; ?>
 			<div class="card-box mb-30 pd-20">
-				<h2 class="h4 pd-20">Logs (Monthly)</h2>
+				<div class="row">
+					<div class="col-md-5 col-sm-12">
+						<h2 class="h4 pd-20">Logs (Monthly)</h2>
+					</div>
+					<div class="col-md-1 col-sm-4 mt-4">Range</div>
+					<div class="col-md-4 col-sm-4 mt-3">
+						<?= form_open('logs-range', 'id="range_form"');?>
+						<input type="text" id="time_range" name="time_range" class="form-control pull-right">
+					</div>
+					<div class="col-md-2 col-sm-4 mt-3">
+						<button type="submit" name="submit_range" id="submit_range" class="btn btn-md btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
 				<div class="responsive ml-4">
 					<table id="logs" style="width:97%" class="table display table-striped table-bordered table-responsive">
 						<thead>

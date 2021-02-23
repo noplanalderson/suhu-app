@@ -1,4 +1,14 @@
 <script>
+    var graphUrl = "<?= base_url('sensor-data/graphData/'.$sensor->thermo_hash)?>";
+    
+    var dataUrl = "<?= base_url('sensor-data/'.$sensor->thermo_hash);?>";
+
+    $('input[name="time_range"]').daterangepicker({
+        "locale": {
+            "format": "YYYY-MM-DD",
+        }
+    });
+
 	var sensorData = $('#sensor-data').DataTable( {
         'processing' : true,
         'serverside' : true,
@@ -18,7 +28,7 @@
         ],
         "autoWidth" : false,
         'ajax': {
-            url : "<?= base_url('sensor-data/'.$sensor->thermo_hash);?>",
+            url : dataUrl,
             timeout : 10000
         },
         "columns": [
@@ -156,9 +166,9 @@
 		});
     }
 
-    function getData() {
+    function getData(graph_url) {
         $.ajax({
-            url: "<?= base_url('sensor-data/graphData/'.$sensor->thermo_hash)?>",
+            url: graph_url,
             timeout: 10000,
             type: 'GET',
             async: true,
@@ -169,10 +179,31 @@
         });
     };
 
-	getData();
+	getData(graphUrl);
     
     setInterval(function(){
-    	getData();
+    	getData(graphUrl);
       	sensorData.ajax.reload();
     }, <?= $this->app->fetch_data_time ?>);
+
+    $("#submit_range").click(function() {
+        var formAction = $("#range_form").attr('action');
+        var time_range = $("#time_range").val();
+        var range = time_range.split(' - ');
+        var data_range = dataUrl + '/' + range[0] + "/" + range[1];
+        var graph_range = graphUrl + '/' + range[0] + "/" + range[1];
+
+        getData(graph_range);
+        
+        $.ajax({
+            type: "GET",
+            url: data_range,
+            dataType: 'json',
+            success: function(data) {
+                $("#sensor-data").DataTable().clear().draw();
+                $("#sensor-data").DataTable().ajax.url(data_range).load();
+            }
+        });
+        return false;
+    });
 </script>

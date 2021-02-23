@@ -3,10 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard_m extends CI_Model {
 
-	public function getLogs()
+	public function getLogs($start, $end)
 	{
 		$this->db->select("DATE_FORMAT(FROM_UNIXTIME(timestamp), '%d %M %Y %H:%i:%s') AS datetime, message");
-		$this->db->where("DATE_FORMAT(FROM_UNIXTIME(timestamp), '%Y%m') = ", date('Ym'));
+		if(empty($start) || empty($end))
+		{
+			$this->db->where("DATE_FORMAT(FROM_UNIXTIME(timestamp), '%Y%m') = ", date('Ym'));
+		}
+		else
+		{
+			$this->db->where("DATE_FORMAT(FROM_UNIXTIME(timestamp), '%Y-%m-%d') BETWEEN '".$start."' AND '".$end."'");
+		}
 		$this->db->order_by('datetime', 'desc');
 		$data = $this->db->get('tb_logs')->result();
 
