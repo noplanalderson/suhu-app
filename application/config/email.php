@@ -3,7 +3,7 @@
 $config = array(
     'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
     'smtp_host' => '', 
-    'smtp_port' => ,
+    'smtp_port' => '',
     'smtp_user' => '',
     'smtp_pass' => '',
     'smtp_crypto' => 'tls', //can be 'ssl' or 'tls' for example
