@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config = array(
-    'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
+    'protocol' => '', // 'mail', 'sendmail', or 'smtp'
     'smtp_host' => '', 
-    'smtp_port' => ,
+    'smtp_port' => 587,
     'smtp_user' => '',
     'smtp_pass' => '',
     'smtp_crypto' => 'tls', //can be 'ssl' or 'tls' for example
