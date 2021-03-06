@@ -1,5 +1,5 @@
 	<!-- js -->
-	<?= js('core') ?>
+	<?= js('cores.min') ?>
 
 	<?php $this->_CI->load_js_plugin() ?>
 	

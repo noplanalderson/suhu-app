@@ -16,9 +16,9 @@
 	<?= css('google-fonts') ?>
 
 	<!-- CSS -->
-	<?= css('core') ?>
+	<?= css('core.min') ?>
 
-	<?= css('style') ?>
+	<?= css('style.min') ?>
 	
 	<?= css('icon-font.min') ?>
 	
