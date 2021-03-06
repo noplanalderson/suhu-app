@@ -5,7 +5,7 @@
 				<h3>Error: <?= $title ?></h3>
 				<p><?= $message ?></p>
 				<div class="pt-20 mx-auto max-width-200">
-					<a href="<?= base_url() ?>" class="btn btn-primary btn-block btn-lg">Halaman Utama</a>
+					<a href="<?= base_url() ?>" class="btn btn-primary btn-block btn-lg">Main Page</a>
 				</div>
 			</div>
 		</div>
