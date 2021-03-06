@@ -16,7 +16,7 @@ latest stable release please visit the `Downloads
 Changelog and New Features
 **************************
 
-No change log at this time.
+Remove unnecessary javascript plugins.
 
 *******************
 Server Requirements
