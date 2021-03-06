@@ -14,12 +14,6 @@ class Login extends SIMONSTER_Core {
 			'script'
 		);
 
-		$this->js = array(
-			'script.min',
-			'process',
-			'layout-settings'
-		);
-
 		$this->_script = 'login';
 
 		$this->load->model('login_m');

@@ -14,12 +14,6 @@ class Forgot_password extends SIMONSTER_Core {
 			'script'
 		);
 
-		$this->js = array(
-			'script.min',
-			'process',
-			'layout-settings'
-		);
-
 		$this->_script = 'forgot_js';
 
 		$this->load->model('forgot_m');
