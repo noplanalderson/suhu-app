@@ -12,12 +12,6 @@ class Page_error extends SIMONSTER_Core {
 			'body',
 			'script'
 		);
-
-		$this->js = array(
-			'script.min',
-			'process',
-			'layout-settings'
-		);
 	}
 
 	public function index($error = NULL)
