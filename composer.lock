@@ -1,0 +1,63 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "9e0df6875cb8626cb94d764c75a1d3be",
+    "packages": [
+        {
+            "name": "poliander/cron",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/poliander/cron.git",
+                "reference": "94cc717b0e45bcd1201af364d284ca537f426a2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/poliander/cron/zipball/94cc717b0e45bcd1201af364d284ca537f426a2a",
+                "reference": "94cc717b0e45bcd1201af364d284ca537f426a2a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cron\\": "src/Cron/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "René Pollesch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Standard (V7) compliant crontab expression parser/validator with support for time zones",
+            "homepage": "https://github.com/poliander/cron",
+            "support": {
+                "issues": "https://github.com/poliander/cron/issues",
+                "source": "https://github.com/poliander/cron/tree/2.3.0"
+            },
+            "time": "2020-12-29T14:48:35+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
