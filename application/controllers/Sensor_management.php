@@ -55,6 +55,13 @@ class Sensor_management extends SIMONSTER_Core
 		$this->load_view();
 	}
 
+	public function test()
+	{
+		$expression = new \Cron\CronExpression('*/8 * * * *');
+		$isValid = $expression->isValid(); // returns true
+		var_dump($isValid);
+	}
+
 	public function get_sensor()
 	{
 		$post = $this->input->post(null, TRUE);
@@ -120,11 +127,6 @@ class Sensor_management extends SIMONSTER_Core
 		return $rules;
 	}
 
-	function cron_check($cron)
-	{
-		return preg_match('/^(((0|[1-5]?[0-9])|[\*]{1}) ((0|[1]?[1-9]|2[0-3])|[\*]{1}) ((1|[1-2]?[0-9]|3[0-1])|[\*]{1}) ((1|[1]?[0-2])|[\*]{1}) ([0-7]{1}|[\*]{1}))$/', $cron) ? true : false;
-	}
-
 	public function add_sensor()
 	{
 		$post = $this->input->post(null, TRUE);
@@ -146,7 +148,9 @@ class Sensor_management extends SIMONSTER_Core
 
 			$cron_schedule = $post['minute'] . ' ' . $post['hour'] . ' ' . $post['date'] . ' ' . $post['month'] . ' ' . $post['day_of_week'];
 
-			if($this->cron_check($cron_schedule) == true)
+			$expression = new \Cron\CronExpression($cron_schedule);
+
+			if($expression->isValid() == true)
 			{
 				$sensor = array(
 					'thermo_hash' => $thermo_hash,
@@ -173,7 +177,7 @@ class Sensor_management extends SIMONSTER_Core
 					}
 
 					$status = 1;
-					$msg = 'Sensor Added.';
+					$msg = 'Sensor Added. '.$valid;
 				}
 				else
 				{
@@ -207,7 +211,9 @@ class Sensor_management extends SIMONSTER_Core
 		{
 			$cron_schedule = $post['minute'] . ' ' . $post['hour'] . ' ' . $post['date'] . ' ' . $post['month'] . ' ' . $post['day_of_week'];
 
-			if($this->cron_check($cron_schedule) == true)
+			$expression = new \Cron\CronExpression($cron_schedule);
+			
+			if($expression->isValid() == true)
 			{
 				$sensor = array(
 					'thermo_url' => $post['thermo_url'],
