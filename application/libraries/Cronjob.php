@@ -80,7 +80,9 @@ class Cronjob
 	{
 		if(!file_exists($this->path . $this->script_file)) $this->error_message('Script Required!');
 
-		if(!preg_match("/^(((0|[1-5]?[0-9])|[\*]{1}) ((0|[1]?[1-9]|2[0-3])|[\*]{1}) ((1|[1-2]?[0-9]|3[0-1])|[\*]{1}) ((1|[1]?[0-2])|[\*]{1}) ([0-7]{1}|[\*]{1}))$/", $this->scheduler))
+		$expression = new \Cron\CronExpression($this->scheduler);
+
+		if($expression->isValid() == false)
 		{
 			$this->scheduler = '0 * * * *';
 		}
